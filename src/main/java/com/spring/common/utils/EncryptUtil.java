@@ -1,8 +1,7 @@
 package com.spring.common.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.codec.Base64;
+
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
@@ -19,9 +18,6 @@ public class EncryptUtil {
     public static final String KEY_MD5 = "MD5";
     private final static String KEY_DES = "DES";
     public static final String KEY_HMD5_256 = "HmacSHA256";
-
-
-    private static Logger logger = LoggerFactory.getLogger(EncryptUtil.class);
 
     //十六进制下数字到字符的映射数组
     private final static String[] HEXDIGITS = {"0", "1", "2", "3", "4",
@@ -50,13 +46,13 @@ public class EncryptUtil {
             byte[] digest = mac.doFinal(content.getBytes());
             resultString = new String(Base64.encode(digest));
         } catch (Exception e) {
-            logger.error("encryptHMac256 fail", e);
+            //logger.error("encryptHMac256 fail", e);
         }
 
         return resultString;
     }
 
- 
+
     public static byte[] encryptSHA(String content) throws Exception {
 
         MessageDigest sha = MessageDigest.getInstance(KEY_SHA);

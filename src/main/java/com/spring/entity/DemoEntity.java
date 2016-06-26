@@ -4,10 +4,10 @@
  */
 package com.spring.entity;
 
-import com.spring.common.validator.groups.Create;
+import com.spring.common.validator.Create;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -18,14 +18,10 @@ public class DemoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Length(min = 1, max = 2, message = "${fail}")
-    @NotNull(message = "{evaluation.evaluation_type.null}", groups = {Create.class})
+    @NotBlank(message = "name", groups = {Create.class})
     private String name;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    private int age;
+
 }
