@@ -15,6 +15,7 @@ public class People implements Serializable {
     @DecimalMax(value = "18", message = "not yu 18")
     @DecimalMin(value = "1", message = "dayu 1")
     private Integer age;
+
     @NotBlank(message = "name is not blank")
     private String name;
 

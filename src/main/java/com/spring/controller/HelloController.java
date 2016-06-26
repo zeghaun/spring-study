@@ -1,20 +1,17 @@
 package com.spring.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class HelloWorldController {
+public class HelloController {
 
-    @RequestMapping("/hello")
-    public String hello(@RequestParam(value = "name", required = false, defaultValue = "123") String name, Model model) {
-        model.addAttribute("name11", name);
-        System.out.println("zeg:" + name);
-        return "helloworld";
+    @RequestMapping(value = "/hello")
+    @ResponseStatus(HttpStatus.OK)
+    public String hello(@RequestParam(value = "name", required = false, defaultValue = "zeghaun") String name) {
+
+        return "hello:" + name;
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
