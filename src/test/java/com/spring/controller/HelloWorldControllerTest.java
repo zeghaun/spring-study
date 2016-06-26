@@ -1,6 +1,5 @@
 package com.spring.controller;
 
-import com.spring.main.HelloWorld;
 import org.apache.commons.lang3.CharEncoding;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +10,6 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -20,7 +18,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,15 +30,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value = {"classpath:spring/SpringBeans.xml"})
-public class HelloWorldControllerTest {
+
+public class HelloWorldControllerTest extends AbstractTest {
 
     protected static MvcResult mvcResult;
     protected MockMvc mockMvc;
 
     @Autowired
     private HelloWorldController controller;
-    
+
 
     @Before
     public void before() throws Exception {
@@ -64,7 +61,7 @@ public class HelloWorldControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
-        mockMvc= MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
         ResultActions result = mockMvc.perform(request);
         mvcResult = result.andDo(MockMvcResultHandlers.print())
