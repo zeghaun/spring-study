@@ -3,7 +3,9 @@ package com.spring.controller;
 import org.apache.commons.lang3.CharEncoding;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -22,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @version 1.0
  * @since <pre>06/26/2016 11:38</pre>
  */
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HelloControllerTest extends AbstractTest {
 
     @Autowired

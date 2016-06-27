@@ -15,7 +15,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 /**
  * JavaConfig方式的spring配置类
  * <p/>
- * 1.必须有这个类，tomcat跑起来的时候，EL表达式才生效。
+ * 1.必须有这个类，tomcat跑起来的时候，EL表达式才生效。我也搞不懂为什么
  */
 @Configuration
 @EnableWebMvc
