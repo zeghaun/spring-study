@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
  * @version Created by zhenghuan on 2016/6/26
  */
 @RestController
-@RequestMapping("/demo")
+//@RequestMapping("/${version}")
+@RequestMapping("/v0.1")
 public class DemoController {
 
     @Value("${author}")
@@ -23,7 +24,7 @@ public class DemoController {
     @Autowired
     private HelloController helloController;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/demo", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Object get() {
         if (helloController != null) {

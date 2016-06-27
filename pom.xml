@@ -8,7 +8,7 @@
     <name>spring-study Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <spring.version>4.0.1.RELEASE</spring.version>
+        <spring.version>4.1.7.RELEASE</spring.version>
     </properties>
     <dependencies>
         <!-- Spring 4 dependencies -->
@@ -38,13 +38,14 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.1.7.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
+        <!-- 动态代理
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>2.2.2</version>
-        </dependency>
+        </dependency> -->
         <!-- Servlet API, JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -72,17 +73,16 @@
             <version>1.9.8</version>
             <type>jar</type>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
         <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.3.2</version>
         </dependency>
 
         <!-- json 处理 -->
@@ -96,7 +96,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.4.3</version>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>

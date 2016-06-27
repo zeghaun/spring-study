@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MvcResult;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(value = {"classpath:spring/applicationContext.xml"})
+//@ContextConfiguration(classes={WebConfig.class})
 public abstract class AbstractTest {
     protected static MvcResult mvcResult;
     protected MockMvc mockMvc;

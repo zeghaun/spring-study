@@ -1,12 +1,8 @@
 package com.spring.main;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
@@ -17,13 +13,10 @@ public class AppMain {
     private static String environment;
 
     public static void main(String[] args) throws Exception {
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/applicationContext.xml"});
 
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("name_adwa", "zeghaun");
-        map.put("age", 58L);
-
-        ObjectMapper mapper = new ObjectMapper();
-        System.out.println(mapper.writeValueAsString(map));
+        HelloWorld helloWorld = (HelloWorld) context.getBean("testHello");
+        helloWorld.printHello();
     }
 
     private void haha() {
