@@ -2,6 +2,8 @@ package com.spring.controller;
 
 import com.spring.common.validator.Create;
 import com.spring.entity.DemoEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -12,11 +14,22 @@ import org.springframework.web.bind.annotation.*;
  * @version Created by zhenghuan on 2016/6/26
  */
 @RestController
+@RequestMapping("/demo")
 public class DemoController {
 
-    @RequestMapping(value = "/demo", method = RequestMethod.GET)
+    @Value("${author}")
+    private String author;
+
+    @Autowired
+    private HelloController helloController;
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Object get() {
+        if (helloController != null) {
+            log("not null");
+        }
+        log(author);
         return "111";
     }
 

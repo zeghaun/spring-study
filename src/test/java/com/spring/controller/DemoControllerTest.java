@@ -31,7 +31,7 @@ public class DemoControllerTest extends AbstractTest {
     @Autowired
     private DemoController controller;
 
-    String pre = "/demo";
+    String pre = "/v0.1/demo";
 
     @Before
     public void before() throws Exception {
