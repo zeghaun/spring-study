@@ -18,18 +18,9 @@
     <!-- 开启这个配置，spring才能识别@Scheduled注解
     <task:annotation-driven scheduler="qbScheduler"/>
     <task:scheduler id="qbScheduler" pool-size="10"/>-->
-    <!-- 定义受环境影响易变的变量 -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
-        <property name="ignoreResourceNotFound" value="true"/>
-        <property name="locations">
-            <list>
-                <!-- 标准配置 -->
-                <value>classpath:app.properties</value>
-            </list>
-        </property>
-    </bean>
 
+    <!--EL表达式生效 一下导入所有的properties-->
+    <context:property-placeholder location="classpath*:*.properties"/>
 
 
     <bean id="testHello" class="com.spring.main.HelloWorld">

@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import com.spring.config.WebConfig;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -14,8 +15,8 @@ import org.springframework.test.web.servlet.MvcResult;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value = {"classpath:spring/applicationContext.xml"})
-//@ContextConfiguration(classes={WebConfig.class})
+//@ContextConfiguration(value = {"classpath:spring/applicationContext.xml"})
+@ContextConfiguration(classes={WebConfig.class})
 public abstract class AbstractTest {
     protected static MvcResult mvcResult;
     protected MockMvc mockMvc;
