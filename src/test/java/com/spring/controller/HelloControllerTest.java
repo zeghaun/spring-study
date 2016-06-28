@@ -33,6 +33,7 @@ public class HelloControllerTest extends AbstractTest {
 
     @Before
     public void before() throws Exception {
+
     }
 
     @After
