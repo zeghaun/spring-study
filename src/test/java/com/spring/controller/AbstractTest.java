@@ -16,7 +16,6 @@ import org.springframework.web.context.WebApplicationContext;
  * @version Created by zhenghuan on 2016/6/26
  */
 
-//@ContextConfiguration(value = {"classpath:spring/applicationContext.xml"})
 @ContextConfiguration(classes = {WebConfig.class})
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +28,11 @@ public abstract class AbstractTest {
     protected WebApplicationContext webApplicationContext;
 
     public void init() throws Exception {
+        /**
+         * 指定WebApplicationContext，将会从该上下文获取相应的控制器并得到相应的MockMvc
+         * standaloneSetup 通过参数指定一组控制器，这样就不需要从上下文获取了
+         * 所以这里必须使用webApplicationContext,才能是使控制器生效
+         */
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 }

@@ -107,19 +107,6 @@
 
     </dependencies>
     <build>
-        <plugins>
-            <!-- 指定检测哪个单元测试 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <includes>
-                        <include>**/DemoControllerTest.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
-        </plugins>
         <finalName>spring-study</finalName>
     </build>
 </project>
