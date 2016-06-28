@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 定义受环境影响易变的变量
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:app.properties</value>
+                <value>classpath:app.properties</value>
+            </list>
+        </property>
+    </bean>
+    上下两者等价
+    <context:property-placeholder location="classpath*:*.properties"/>
+    -->
+
+    <!-- 开启HandlerInterceptor 拦截器-->
+    <mvc:interceptors>
+        <!--<mvc:interceptor>
+            <mvc:mapping path="/v*/console/**"/>
+            <mvc:exclude-mapping path="/v*/console/login"/>
+            <mvc:exclude-mapping path="/v*/console/logout"/>
+            <bean class="com.nd.meetyou.filter.ControllerFilter"/>
+        </mvc:interceptor>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.spring.filter.ControllerFilter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>

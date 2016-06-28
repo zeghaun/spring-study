@@ -27,9 +27,7 @@ public class DemoController {
     @RequestMapping(value = "/demo", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Object get() {
-        if (helloController != null) {
-            log("not null");
-        }
+
         log(author);
         return "111";
     }
