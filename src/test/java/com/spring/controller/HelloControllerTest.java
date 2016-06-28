@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
@@ -27,13 +26,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HelloControllerTest extends AbstractTest {
 
-    @Autowired
-    private HelloController controller;
-
-
     @Before
     public void before() throws Exception {
-
+        super.init();
     }
 
     @After
@@ -53,7 +48,7 @@ public class HelloControllerTest extends AbstractTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(webApplicationContext).build();
 
         ResultActions result = mockMvc.perform(request);
         mvcResult = result.andDo(MockMvcResultHandlers.print())

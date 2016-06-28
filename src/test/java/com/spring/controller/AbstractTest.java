@@ -24,6 +24,7 @@ public abstract class AbstractTest {
     protected static MvcResult mvcResult;
     protected MockMvc mockMvc;
 
+    //需要在webconfig开启这个 @EnableWebMvc
     @Autowired
     protected WebApplicationContext webApplicationContext;
 
