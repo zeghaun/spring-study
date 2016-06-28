@@ -7,14 +7,12 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,13 +29,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DemoControllerTest extends AbstractTest {
 
-    @Autowired
-    private DemoController controller;
-
-    String pre = "/demo";
+    String pre = "/v0.1/demo";
 
     @Before
     public void before() throws Exception {
+        super.init();
     }
 
     @After
@@ -56,8 +52,6 @@ public class DemoControllerTest extends AbstractTest {
                 .characterEncoding(CharEncoding.UTF_8)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
-
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
         ResultActions result = mockMvc.perform(request);
         mvcResult = result.andDo(MockMvcResultHandlers.print())
@@ -79,7 +73,8 @@ public class DemoControllerTest extends AbstractTest {
                 .characterEncoding(CharEncoding.UTF_8)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+
+
         request.content(JsonUtil.toJson(map));
         System.out.println(JsonUtil.toJson(map));
 

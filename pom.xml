@@ -8,7 +8,8 @@
     <name>spring-study Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <spring.version>4.1.7.RELEASE</spring.version>
+        <spring.version>4.2.0.RELEASE</spring.version>
+        <hibernate.version>5.2.2.Final</hibernate.version>
     </properties>
     <dependencies>
         <!-- Spring 4 dependencies -->
@@ -60,7 +61,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.0.2.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -102,8 +103,23 @@
             <version>2.4.3</version>
         </dependency>
 
+
+
     </dependencies>
     <build>
+        <plugins>
+            <!-- 指定检测哪个单元测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <includes>
+                        <include>**/DemoControllerTest.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
         <finalName>spring-study</finalName>
     </build>
 </project>

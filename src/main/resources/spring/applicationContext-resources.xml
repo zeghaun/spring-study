@@ -25,12 +25,6 @@
 
     <!-- 开启HandlerInterceptor 拦截器-->
     <mvc:interceptors>
-        <!--<mvc:interceptor>
-            <mvc:mapping path="/v*/console/**"/>
-            <mvc:exclude-mapping path="/v*/console/login"/>
-            <mvc:exclude-mapping path="/v*/console/logout"/>
-            <bean class="com.nd.meetyou.filter.ControllerFilter"/>
-        </mvc:interceptor>-->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.spring.filter.ControllerFilter"/>

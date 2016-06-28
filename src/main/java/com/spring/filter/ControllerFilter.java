@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 拦截器处理，需要在xml开启对应配置
- *
- *1.还有一个拦截器WebRequestInterceptor，不懂
- *
+ * <p/>
+ * 1.还有一个拦截器WebRequestInterceptor，不懂
  */
 @Component
 public class ControllerFilter implements HandlerInterceptor {
@@ -29,6 +28,7 @@ public class ControllerFilter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
         System.out.println("preHandle");
+        String a = httpServletRequest.getHeader("Content-Type");
         return true;
     }
 
