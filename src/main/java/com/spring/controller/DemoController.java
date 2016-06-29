@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import com.spring.common.validator.Create;
 import com.spring.entity.DemoEntity;
+import com.spring.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @version Created by zhenghuan on 2016/6/26
  */
 @RestController
-@RequestMapping("/${version}")
+@RequestMapping("/${version}/demo")
 //@RequestMapping("/v0.1")
 public class DemoController {
 
@@ -22,9 +23,9 @@ public class DemoController {
     private String author;
 
     @Autowired
-    private HelloController helloController;
+    private DemoService demoService;
 
-    @RequestMapping(value = "/demo", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Object get() {
 
@@ -33,15 +34,15 @@ public class DemoController {
     }
 
 
-    @RequestMapping(value = "/demo", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Object post(@RequestBody @Validated(Create.class) DemoEntity demoEntity, Errors errors) throws Exception {
-        if (errors.hasFieldErrors()) {
-            log("hasFieldErrors");
-            throw new Exception(errors.getFieldError().toString());
-        } else if (errors.hasGlobalErrors()) {
-            throw new Exception(errors.getGlobalError().toString());
-        }
+//        if (errors.hasFieldErrors()) {
+//            log("hasFieldErrors");
+//            throw new Exception(errors.getFieldError().toString());
+//        } else if (errors.hasGlobalErrors()) {
+//            throw new Exception(errors.getGlobalError().toString());
+//        }
         log("post");
         return demoEntity.getAge();
     }

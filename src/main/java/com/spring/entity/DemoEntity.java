@@ -30,6 +30,7 @@ public class DemoEntity implements Serializable {
 
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
+    
 
     public String getName() {
         return name;
