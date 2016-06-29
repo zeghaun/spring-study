@@ -1,5 +1,8 @@
 package com.spring.controller;
 
+import com.spring.common.exception.FieldException;
+import com.spring.common.utils.JsonUtil;
+import com.spring.common.utils.MessageUtil;
 import com.spring.common.validator.Create;
 import com.spring.entity.DemoEntity;
 import com.spring.service.DemoService;
@@ -37,14 +40,16 @@ public class DemoController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Object post(@RequestBody @Validated(Create.class) DemoEntity demoEntity, Errors errors) throws Exception {
-//        if (errors.hasFieldErrors()) {
-//            log("hasFieldErrors");
-//            throw new Exception(errors.getFieldError().toString());
-//        } else if (errors.hasGlobalErrors()) {
-//            throw new Exception(errors.getGlobalError().toString());
-//        }
+        if (errors.hasFieldErrors()) {
+            log("hasFieldErrors");
+
+            throw new FieldException(errors.getFieldError());
+        } else if (errors.hasGlobalErrors()) {
+            throw new Exception(errors.getGlobalError().toString());
+        }
         log("post");
-        return demoEntity.getAge();
+        log(MessageUtil.getMessage("error.locate"));
+        return JsonUtil.toJson(demoEntity);
     }
 
     @RequestMapping(value = "", method = RequestMethod.DELETE)

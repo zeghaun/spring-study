@@ -67,7 +67,7 @@ public class DemoControllerTest extends AbstractTest {
         String url = pre;
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", "zeghaun");
-        map.put("age", 58L);
+        map.put("age", 1111158);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.request(HttpMethod.POST, url)
                 .characterEncoding(CharEncoding.UTF_8)
