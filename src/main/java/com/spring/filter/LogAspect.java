@@ -7,15 +7,11 @@ package com.spring.filter;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
-/**
- * @author DC.L <ivwsai@gmail.com>
- * @version Created by DCL on 5/3/2016
- */
+
 @Aspect
 @Component
 public class LogAspect {
@@ -38,7 +34,13 @@ public class LogAspect {
 
     }
 
-    @Around("execution(public * com.spring.controller..*.*(..)) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
+    /**
+     * 开启后 controller方法好像不执行了
+     *
+     * @param joinPoint
+     * @return
+     */
+    //@Around("execution(public * com.spring.controller..*.*(..)) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public Object doAroud(ProceedingJoinPoint joinPoint) {
         log("Aspece doAroud");
 

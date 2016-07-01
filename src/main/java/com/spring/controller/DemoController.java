@@ -29,6 +29,7 @@ public class DemoController {
     public Object get() {
 
         log(author);
+
         return "111";
     }
 
