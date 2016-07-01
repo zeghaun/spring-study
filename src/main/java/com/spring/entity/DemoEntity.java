@@ -19,17 +19,18 @@ public class DemoEntity implements Serializable {
     /**
      * Default serial version ID.
      */
-    private static final long serialVersionUID = 4164681684864356L;
+    private static final long serialVersionUID = 1L;
 
     @NotBlank(message = "name", groups = {Create.class, Modify.class})
     @Pattern(regexp = "^[a-zA-Z]{1,10}$", message = "{evaluation.dentry_id.illegal}")
     private String name;
 
-    @Range(min = 0, max = 150, message = "age", groups = {Create.class, Modify.class})
+    @Range(min = 0, max = 150, message = "{age}", groups = {Create.class, Modify.class})
     private int age;
 
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
+
 
     public String getName() {
         return name;

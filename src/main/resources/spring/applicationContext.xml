@@ -7,10 +7,11 @@
        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-    <!-- Activates scanning of @Autowired -->
-    <context:annotation-config/>
+    <!-- Activates scanning of @Autowired
+    <context:annotation-config/>-->
     <!-- Activates scanning of @controller @service;还具有context:annotation-config 的功能-->
-    <context:component-scan base-package="com.spring.controller;com.spring.service;com.spring.filter"/>
+    <context:component-scan
+            base-package="com.spring.controller;com.spring.service;com.spring.filter;com.spring.component"/>
 
     <!--EL表达式生效 一下导入所有的properties-->
     <context:property-placeholder location="classpath*:*.properties"/>
@@ -30,4 +31,5 @@
     </bean>
 
     <import resource="classpath:spring/applicationContext-resources.xml"/>
+    <import resource="classpath:spring/applicationContext-i18n.xml"/>
 </beans>
