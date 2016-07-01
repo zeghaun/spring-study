@@ -4,6 +4,7 @@ import com.spring.common.utils.MessageUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
@@ -15,6 +16,10 @@ public class FieldException extends RuntimeException {
     ResponseEntity<ErrorMessage> responseEntity;
 
     public FieldException(FieldError field) {
+        this((ObjectError) field);
+    }
+
+    public FieldException(ObjectError field) {
         this(new ResponseEntity<>(
                 new ErrorMessage(
                         field.getDefaultMessage().toUpperCase().replaceAll("\\{|\\}", "").replaceAll("\\.", "_"),
@@ -31,7 +36,8 @@ public class FieldException extends RuntimeException {
         // errors.getFieldError().getArguments()
         Object[] rsArgs = new Object[args.length];
         for (int i = 0; i < args.length; i++) {
-            rsArgs[i] = args[args.length - 1 - i];;
+            rsArgs[i] = args[args.length - 1 - i];
+            ;
         }
         return rsArgs;
     }

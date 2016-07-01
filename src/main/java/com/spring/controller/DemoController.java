@@ -41,11 +41,9 @@ public class DemoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Object post(@RequestBody @Validated(Create.class) DemoEntity demoEntity, Errors errors) throws Exception {
         if (errors.hasFieldErrors()) {
-            log("hasFieldErrors");
-
             throw new FieldException(errors.getFieldError());
         } else if (errors.hasGlobalErrors()) {
-            throw new Exception(errors.getGlobalError().toString());
+            throw new FieldException(errors.getGlobalError());
         }
         log("post");
         log(MessageUtil.getMessage("error.locate"));
