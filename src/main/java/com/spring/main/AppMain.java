@@ -13,7 +13,10 @@ public class AppMain {
     private static String environment;
 
     public static void main(String[] args) throws Exception {
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/applicationContext.xml"});
 
+        HelloWorld helloWorld = (HelloWorld) context.getBean("testHello");
+        helloWorld.printHello();
     }
 
     private void haha() {

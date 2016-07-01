@@ -11,25 +11,34 @@ import org.springframework.context.support.MessageSourceAccessor;
 public class MessageUtil {
 
     /**
-     * 取application 全局的bean
-     *
      * @return
      */
     public static MessageSourceAccessor getMessageSourceAccessor() {
         return Application.getApplicationContext().getBean(MessageSourceAccessor.class);
     }
 
-
+    /**
+     * @param code
+     * @return
+     */
     public static String getMessage(String code) {
         return getMessageSourceAccessor().getMessage(code);
     }
 
-
+    /**
+     * @param code
+     * @param args
+     * @return
+     */
     public static String getMessage(String code, Object[] args) {
         return getMessageSourceAccessor().getMessage(code, args);
     }
 
-
+    /**
+     * @param code
+     * @param defaultMessage
+     * @return
+     */
     public static String getMessage(String code, String defaultMessage) {
         return getMessageSourceAccessor().getMessage(code, defaultMessage);
     }
