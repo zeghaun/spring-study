@@ -28,8 +28,12 @@ public class LogAspect {
     public void doBefore(JoinPoint joinPoint) {
         // 记录方法开始执行的时间
         before = System.currentTimeMillis();
+//        ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+//        HttpServletRequest request = sra.getRequest();
+        // 从鉴权会话中获取用户信息
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        DemoEntity d = (DemoEntity) joinPoint.getArgs()[0];
 
-        DemoEntity d = (DemoEntity) joinPoint.getArgs()[0];
         System.out.println("Aspect doBefore");
 
     }
