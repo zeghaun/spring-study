@@ -4,6 +4,7 @@
  */
 package com.spring.filter;
 
+import com.spring.entity.DemoEntity;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -24,14 +25,17 @@ public class LogAspect {
     public void doBefore(JoinPoint joinPoint) {
         // 记录方法开始执行的时间
         before = System.currentTimeMillis();
+
+        DemoEntity d=(DemoEntity)joinPoint.getArgs()[0];
         System.out.println("Aspect doBefore");
+
     }
 
     @After("execution(public * com.spring.controller..*.*(..)) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void doAfter(JoinPoint joinPoint) {
         after = System.currentTimeMillis();
+        DemoEntity d=(DemoEntity)joinPoint.getArgs()[0];
         log("Aspect doAfter");
-
     }
 
     /**
