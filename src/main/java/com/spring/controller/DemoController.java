@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 //@RequestMapping("/v0.1")
 public class DemoController {
 
-
     @Value("${author}")
     private String author;
 
@@ -31,7 +30,6 @@ public class DemoController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Object get() {
-        log(author);
         return demoService.getList();
     }
 
@@ -45,13 +43,13 @@ public class DemoController {
             throw new FieldException(errors.getGlobalError());
         }
 
-
         return JsonUtil.toJson(demoEntity);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public Object delete() {
+    public Object delete(@PathVariable(value = "id") String id) {
+
         return "";
     }
 

@@ -20,4 +20,19 @@ public class DemoService {
         DemoDao demoDao = new DemoDao(jdbcTemplate);
         return demoDao.query("");
     }
+
+    public Object delete() {
+        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
+        DemoDao demoDao = new DemoDao(jdbcTemplate);
+
+        return demoDao.delete("");
+    }
+
+    public Object update() {
+        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
+        DemoDao demoDao = new DemoDao(jdbcTemplate);
+
+        return demoDao.update();
+    }
+
 }
