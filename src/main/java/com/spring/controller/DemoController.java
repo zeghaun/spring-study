@@ -2,7 +2,6 @@ package com.spring.controller;
 
 import com.spring.common.exception.FieldException;
 import com.spring.common.utils.JsonUtil;
-import com.spring.common.utils.MessageUtil;
 import com.spring.common.validator.Create;
 import com.spring.entity.DemoEntity;
 import com.spring.service.DemoService;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 //@RequestMapping("/v0.1")
 public class DemoController {
 
+
     @Value("${author}")
     private String author;
 
@@ -31,9 +31,8 @@ public class DemoController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Object get() {
-
         log(author);
-        return "111";
+        return demoService.getList();
     }
 
 
@@ -45,8 +44,8 @@ public class DemoController {
         } else if (errors.hasGlobalErrors()) {
             throw new FieldException(errors.getGlobalError());
         }
-        log("post");
-        log(MessageUtil.getMessage("error.locate"));
+
+
         return JsonUtil.toJson(demoEntity);
     }
 

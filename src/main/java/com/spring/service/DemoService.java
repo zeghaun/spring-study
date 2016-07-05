@@ -1,5 +1,9 @@
 package com.spring.service;
 
+import com.spring.component.JdbcFactory;
+import com.spring.dao.DemoDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,4 +12,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DemoService {
+    @Autowired
+    JdbcFactory jdbcFactory;
+
+    public Object getList() {
+        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
+        DemoDao demoDao = new DemoDao(jdbcTemplate);
+        return demoDao.query("");
+    }
 }
