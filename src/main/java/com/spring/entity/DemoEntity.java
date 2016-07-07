@@ -11,16 +11,22 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "demo")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DemoEntity implements Serializable {
     /**
      * Default serial version ID.
      */
     private static final long serialVersionUID = 1L;
-
+    //hibenate 要特别加@Id 搞不懂为啥
+    @Id
     private int id;
 
     @NotBlank(message = "name", groups = {Create.class, Modify.class})

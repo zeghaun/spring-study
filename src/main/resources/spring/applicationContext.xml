@@ -3,15 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:task="http://www.springframework.org/schema/task"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <!-- Activates scanning of @Autowired
-    <context:annotation-config/>-->
+    <!-- Activates scanning of @Autowired-->
+    <context:annotation-config/>
     <!-- Activates scanning of @controller @service;还具有context:annotation-config 的功能-->
     <context:component-scan
-            base-package="com.spring.controller;com.spring.service;com.spring.filter;com.spring.component"/>
+            base-package="com.spring.controller;com.spring.service;com.spring.filter;com.spring.component;com.spring.repository"/>
 
     <!--EL表达式生效 一下导入所有的properties-->
     <context:property-placeholder location="classpath*:*.properties"/>
@@ -26,12 +27,15 @@
         </property>
     </bean>
 
+    <jpa:repositories base-package="com.spring.repository" transaction-manager-ref="transactionManager"/>
+
     <bean id="testHello" class="com.spring.main.HelloWorld">
         <property name="name" value="${author}"/>
     </bean>
 
     <import resource="classpath:spring/applicationContext-resources.xml"/>
     <import resource="classpath:spring/applicationContext-i18n.xml"/>
+    <import resource="classpath:spring/applicationContext-hibernate.xml"/>
     <import resource="classpath:spring/applicationContext-mysql.xml"/>
 
 </beans>

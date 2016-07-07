@@ -1,7 +1,6 @@
 package com.spring.controller;
 
 import com.spring.common.exception.FieldException;
-import com.spring.common.utils.JsonUtil;
 import com.spring.common.validator.Create;
 import com.spring.entity.DemoEntity;
 import com.spring.service.DemoService;
@@ -43,7 +42,7 @@ public class DemoController {
             throw new FieldException(errors.getGlobalError());
         }
 
-        return JsonUtil.toJson(demoEntity);
+        return demoService.post(demoEntity);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
