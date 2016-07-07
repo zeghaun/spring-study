@@ -7,42 +7,18 @@ package com.spring.component;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 
 @Component
-public class JdbcFactory {
+public final class JdbcFactory {
+    @Resource(name = "mysql_global")
+    private JdbcTemplate jdbcTemplate;
 
-    public static long getDbIndex(long id) {
-        return id % 10;
-    }
-
-    public final JdbcTemplate getGlobalJTAInstance() {
-        JdbcTemplate jdbcTemplate = null;
-        jdbcTemplate = (JdbcTemplate) BeanFactory.getBean("jtaJdbcTemplate_global");
-        if (jdbcTemplate == null) {
-            throw new RuntimeException("JdbcTemplate is null....");
-        }
-        return jdbcTemplate;
-    }
-
-    public final JdbcTemplate getJTAInstanceByDb(long id) {
-        if (id < 0) {
-            id = 0L;
-        }
-        JdbcTemplate jdbcTemplate = null;
-        jdbcTemplate = (JdbcTemplate) BeanFactory.getBean("jtaJdbcTemplate_" + getDbIndex(id));
-        if (jdbcTemplate == null) {
-            throw new RuntimeException("JdbcTemplate is null....");
-        }
-
-        return jdbcTemplate;
-    }
-
-    /**
-     * 默认的
-     *
-     * @return
-     */
     public JdbcTemplate getInstance() {
-        return getGlobalJTAInstance();
+        if (jdbcTemplate == null) {
+            throw new RuntimeException("JdbcTemplate is null....");
+        }
+        return jdbcTemplate;
     }
 }

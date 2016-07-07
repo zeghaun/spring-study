@@ -13,7 +13,7 @@ public class AppMain {
     private static String environment;
 
     public static void main(String[] args) throws Exception {
-
+        Class.forName("com.mysql.jdbc.Driver");
     }
 
     private void haha() {

@@ -21,6 +21,8 @@ public class DemoEntity implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
+    private int id;
+
     @NotBlank(message = "name", groups = {Create.class, Modify.class})
     @Pattern(regexp = "^[a-zA-Z]{1,10}$", message = "{evaluation.dentry_id.illegal}")
     private String name;
@@ -31,6 +33,13 @@ public class DemoEntity implements Serializable {
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

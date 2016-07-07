@@ -2,7 +2,6 @@ package com.spring.controller;
 
 import com.spring.common.exception.FieldException;
 import com.spring.common.utils.JsonUtil;
-import com.spring.common.utils.MessageUtil;
 import com.spring.common.validator.Create;
 import com.spring.entity.DemoEntity;
 import com.spring.service.DemoService;
@@ -31,9 +30,7 @@ public class DemoController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Object get() {
-
-        log(author);
-        return "111";
+        return demoService.getList();
     }
 
 
@@ -41,20 +38,18 @@ public class DemoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Object post(@RequestBody @Validated(Create.class) DemoEntity demoEntity, Errors errors) throws Exception {
         if (errors.hasFieldErrors()) {
-            log("hasFieldErrors");
-
             throw new FieldException(errors.getFieldError());
         } else if (errors.hasGlobalErrors()) {
-            throw new Exception(errors.getGlobalError().toString());
+            throw new FieldException(errors.getGlobalError());
         }
-        log("post");
-        log(MessageUtil.getMessage("error.locate"));
+
         return JsonUtil.toJson(demoEntity);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public Object delete() {
+    public Object delete(@PathVariable(value = "id") String id) {
+
         return "";
     }
 
