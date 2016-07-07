@@ -17,12 +17,11 @@ public interface DemoRepository extends CrudRepository<DemoEntity, String> {
 
     DemoEntity findById(int id);
 
-//    @Modifying
-//    @Query(value = "update demo set age=?1 where id=?2", nativeQuery = true)
+    //    @Modifying
+//    @Query(value = "update demo set age=?2 where id=?1")
 //    int update(int id, int age);
-
     long count();
 
 
-    List<DemoEntity> removeByName(String name);
+    List<DemoEntity> removeByName(String value);
 }

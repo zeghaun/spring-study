@@ -23,6 +23,8 @@
         </property>
     </bean>
 
-    <!-- 配置Spring Data JPA扫描目录-->
-    <jpa:repositories base-package="com.spring.repository"/>
+    <!-- 配置Spring Data JPA扫描目录  必须添加事务支持，否则不能修改，新增-->
+    <jpa:repositories base-package="com.spring.repository"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="jpaTransactionManager"/>
 </beans>  

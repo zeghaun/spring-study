@@ -46,9 +46,6 @@ public class DemoService {
     }
 
     public Object post(DemoEntity demoEntity) {
-        demoEntity.setAge(-1);
-        demoRepository.save(demoEntity);
-
         log("-------------------------");
         DemoEntity demo = demoRepository.findById(2);
         log(JsonUtil.toJson(demo));
@@ -57,7 +54,7 @@ public class DemoService {
 
 
         log("-------------------------");
-        List<DemoEntity> list = demoRepository.removeByName("fweew");
+        List<DemoEntity> list = demoRepository.removeByName("zeg104849586506");
 
         log(JsonUtil.toJson(list));
         log("**************************");
