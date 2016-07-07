@@ -27,7 +27,7 @@ public class ControllerFilter implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
-        System.out.println("preHandle");
+//        System.out.println("preHandle");
         String a = httpServletRequest.getHeader("Content-Type");
         return true;
     }
@@ -41,7 +41,7 @@ public class ControllerFilter implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("postHandle");
+//        System.out.println("postHandle");
     }
 
     /**
@@ -50,7 +50,7 @@ public class ControllerFilter implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler, Exception e) throws Exception {
-        System.out.println("afterCompletion");
+//        System.out.println("afterCompletion");
     }
 
 }

@@ -13,7 +13,6 @@ import java.util.TimeZone;
 
 /**
  * 重构的json初始化工具类,符合spring
- *
  */
 public class JsonUtil {
 
@@ -64,8 +63,13 @@ public class JsonUtil {
         return mapper.readValue(stream, objectType);
     }
 
-    public static String toJson(Object obj) throws IOException {
-
-        return mapper.writeValueAsString(obj);
+    public static String toJson(Object obj) {
+        String json = null;
+        try {
+            json = mapper.writeValueAsString(obj);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return json;
     }
 }

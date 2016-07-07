@@ -11,4 +11,6 @@ import javax.annotation.Resource;
  */
 @Resource
 public interface DemoRepository extends JpaRepository<DemoEntity, String> {
+    
+    DemoEntity findById(int id);
 }

@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import com.spring.common.utils.JsonUtil;
 import com.spring.component.JdbcFactory;
 import com.spring.dao.DemoDao;
 import com.spring.entity.DemoEntity;
@@ -55,11 +56,13 @@ public class DemoService {
         demoEntity.setAge(-1);
         demoRepository.save(demoEntity);
 
+        DemoEntity demo = demoRepository.findById(2);
+        System.out.println(JsonUtil.toJson(demo));
+
         HibernateEntity hibernateEntity = new HibernateEntity();
         hibernateEntity.setId(System.currentTimeMillis() / 10 ^ 5);
         hibernateEntity.setKey("zeg" + System.currentTimeMillis());
         hibernateEntity.setValue("value");
-
         hibernateRepository.save(hibernateEntity);
 
         return hibernateRepository.save(hibernateEntity);

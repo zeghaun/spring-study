@@ -33,7 +33,7 @@ public class LogAspect {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        DemoEntity d = (DemoEntity) joinPoint.getArgs()[0];
 
-        System.out.println("Aspect doBefore");
+        log("Aspect doBefore");
 
     }
 
@@ -76,19 +76,20 @@ public class LogAspect {
      */
     //@Around("execution(public * com.spring.controller..*.*(..)) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public Object doAroud(ProceedingJoinPoint joinPoint) {
-        System.out.println("方法环绕start.....");
+        log("方法环绕start.....");
         Object o = null;
         try {
             o = joinPoint.proceed();
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        System.out.println("方法环绕end.....");
+        log("方法环绕end.....");
 
         return null;
     }
 
     private static void log(String str) {
-        System.out.println(str);
+
+        //System.out.println(str);
     }
 }

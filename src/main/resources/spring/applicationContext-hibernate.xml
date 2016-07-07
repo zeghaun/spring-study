@@ -24,7 +24,6 @@
                 <property name="database" value="MYSQL"/>
             </bean>
         </property>
-        <!--<property name="persistenceUnitName" value="zeghaun_jpa"/>-->
     </bean>
 
     <!-- 启用 annotation事务-->
