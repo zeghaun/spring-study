@@ -11,5 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HibernateRepository extends JpaRepository<HibernateEntity, String> {
 
-
+//    HibernateEntity findById(int id);
+//
+//    HibernateEntity update(HibernateEntity hibernateEntity);
 }

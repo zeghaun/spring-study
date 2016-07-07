@@ -1,5 +1,7 @@
 package com.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,20 +13,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "hibernate")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HibernateEntity {
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     private String key;
 
     private String value;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

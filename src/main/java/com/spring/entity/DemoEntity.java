@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
@@ -27,6 +28,7 @@ public class DemoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     //hibenate 要特别加@Id 搞不懂为啥
     @Id
+    @GeneratedValue
     private int id;
 
     @NotBlank(message = "name", groups = {Create.class, Modify.class})
