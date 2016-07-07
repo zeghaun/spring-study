@@ -57,7 +57,9 @@ public class DemoService {
 
 
         log("-------------------------");
+        List<DemoEntity> list = demoRepository.removeByName("fweew");
 
+        log(JsonUtil.toJson(list));
         log("**************************");
         log();
         return demo;

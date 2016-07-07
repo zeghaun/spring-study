@@ -2,6 +2,7 @@ package com.spring.repository;
 
 import com.spring.entity.DemoEntity;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @version Created by zhenghuan on 2016/7/7
  */
 @Resource
+@Transactional
 public interface DemoRepository extends CrudRepository<DemoEntity, String> {
 
     DemoEntity findById(int id);
@@ -20,6 +22,7 @@ public interface DemoRepository extends CrudRepository<DemoEntity, String> {
 //    int update(int id, int age);
 
     long count();
+
 
     List<DemoEntity> removeByName(String name);
 }
