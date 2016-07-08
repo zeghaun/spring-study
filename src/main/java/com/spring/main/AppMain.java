@@ -1,6 +1,6 @@
 package com.spring.main;
 
-import com.spring.entity.DemoEntity;
+import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,7 +34,7 @@ public class AppMain {
 
         AppMain c = (AppMain) ctx.getBean("appMain");
         Demo um = new Demo();
-        um.setAge(1);
+        um.setAge(15);
         um.setName("zeghaun");
         um.setRemark("zeghaun");
         c.add(um);
@@ -44,6 +44,20 @@ public class AppMain {
         System.out.println("中文中文中".length());
     }
 
+    public void test() {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("test/applicationContext-jpa.xml");
+
+        AppMain c = (AppMain) ctx.getBean("appMain");
+        Demo um = new Demo();
+        um.setAge(15);
+        um.setName("zeghaun");
+        um.setRemark("zeghaun");
+        c.add(um);
+
+        c.delete(11146);
+
+        System.out.println("中文中文中".length());
+    }
 
     private static void log(String str) {
         System.out.println(str);

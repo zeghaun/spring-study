@@ -4,19 +4,22 @@ import com.spring.common.utils.JsonUtil;
 import com.spring.component.JdbcFactory;
 import com.spring.dao.DemoDao;
 import com.spring.entity.DemoEntity;
+import com.spring.main.Demo;
 import com.spring.repository.DemoRepository;
+import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import javax.transaction.Transactional;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
  * @version Created by zhenghuan on 2016/6/26
  */
 @Service
+@Transactional
 public class DemoService {
     @Autowired(required = false)
     JdbcFactory jdbcFactory;
@@ -24,6 +27,10 @@ public class DemoService {
 
     @Resource
     private DemoRepository demoRepository;
+
+    @Resource
+    private TestRepository testRepository;
+
 
     public Object getList() {
         JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
@@ -54,9 +61,15 @@ public class DemoService {
 
 
         log("-------------------------");
-        List<DemoEntity> list = demoRepository.removeByName("zeg104849586506");
+        Demo um = new Demo();
+        um.setAge(1);
+        um.setName("zeghaun");
+        um.setRemark("zeghaun");
+        Demo um1 = testRepository.save(um);
 
-        log(JsonUtil.toJson(list));
+        log(JsonUtil.toJson(um1));
+
+        testRepository.deleteById(4);
         log("**************************");
         log();
         return demo;

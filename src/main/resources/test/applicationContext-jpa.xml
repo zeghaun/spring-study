@@ -15,21 +15,27 @@ http://www.springframework.org/schema/data/jpa http://www.springframework.org/sc
     <!--EL表达式生效 一下导入所有的properties-->
     <context:property-placeholder location="classpath*:*.properties"/>
 
+
+    <!-- Activates scanning of @controller @service;还具有context:annotation-config 的功能-->
+    <context:component-scan
+            base-package="com.spring.controller;com.spring.service;com.spring.filter;com.spring.component;com.spring.repository"/>
+
     <context:component-scan base-package="com.spring.main">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <!-- 开启注解事务 只对当前配置文件有效 -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
     <jpa:repositories
-            base-package="com.spring.main"
+            base-package="com.spring.repository"
             entity-manager-factory-ref="entityManagerFactory"
             transaction-manager-ref="transactionManager">
     </jpa:repositories>
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.spring.main"/>
+        <property name="packagesToScan" value="com.spring.*"/>
         <property name="persistenceProvider">
             <bean class="org.hibernate.ejb.HibernatePersistence"/>
         </property>

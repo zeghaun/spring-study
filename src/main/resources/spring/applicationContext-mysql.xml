@@ -13,10 +13,10 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- 单库事务 -->
+    <!-- 单库事务
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
-    </bean>
+    </bean>-->
 
     <!-- 数据源配置, 使用 BoneCP 数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
