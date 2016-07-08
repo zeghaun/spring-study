@@ -24,6 +24,6 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     long count();
 
     @Modifying
-    @Query(value = "DELETE FROM demo WHERE value=?1", nativeQuery = true)
-    List<DemoEntity> removeByName(String value);
+    @Query(value = "DELETE FROM demo WHERE name=?1", nativeQuery = true)
+    int removeByName(String value);
 }
