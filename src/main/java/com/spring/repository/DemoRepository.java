@@ -1,19 +1,19 @@
 package com.spring.repository;
 
 import com.spring.entity.DemoEntity;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
  * @version Created by zhenghuan on 2016/7/7
  */
-@Resource
-@Transactional
-public interface DemoRepository extends CrudRepository<DemoEntity, String> {
+@Repository
+public interface DemoRepository extends JpaRepository<DemoEntity, String> {
 
     DemoEntity findById(int id);
 
@@ -22,6 +22,7 @@ public interface DemoRepository extends CrudRepository<DemoEntity, String> {
 //    int update(int id, int age);
     long count();
 
-
+    @Modifying
+    @Query(value = "DELETE FROM demo WHERE value=?1", nativeQuery = true)
     List<DemoEntity> removeByName(String value);
 }

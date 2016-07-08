@@ -1,28 +1,49 @@
 package com.spring.main;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.spring.entity.DemoEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.sql.SQLException;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
  * @version Created by zhenghuan on 2016/6/26
  */
+@Service
+@Transactional
 public class AppMain {
-    @Value("${environment}")
-    private static String environment;
 
-    public static void main(String[] args) throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");
+    @Autowired
+    private TestRepository ur;
+
+    public void add(Demo um) {
+        ur.save(um);
     }
 
-    private void haha() {
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/SpringBeans.xml"});
-
-        HelloWorld helloWorld = (HelloWorld) context.getBean("helloBean");
-        helloWorld.printHello();
-
+    public void delete(int id) {
+        ur.deleteById(id);
     }
+
+    public static void main(String[] args) throws SQLException {
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("test/applicationContext-jpa.xml");
+
+        AppMain c = (AppMain) ctx.getBean("appMain");
+        Demo um = new Demo();
+        um.setAge(1);
+        um.setName("zeghaun");
+        um.setRemark("zeghaun");
+        c.add(um);
+
+        c.delete(11146);
+
+        System.out.println("中文中文中".length());
+    }
+
 
     private static void log(String str) {
         System.out.println(str);
@@ -35,5 +56,6 @@ public class AppMain {
     private static void log(int str) {
         System.out.println(str);
     }
+
 
 }

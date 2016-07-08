@@ -7,12 +7,10 @@ package com.spring.component;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 
 
-@Component
 public final class JdbcFactory {
-    @Resource(name = "mysql_global")
+//    @Resource(name = "mysql_global")
     private JdbcTemplate jdbcTemplate;
 
     public JdbcTemplate getInstance() {

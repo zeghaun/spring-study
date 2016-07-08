@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Service
 public class DemoService {
-    @Autowired
+    @Autowired(required = false)
     JdbcFactory jdbcFactory;
 
 
