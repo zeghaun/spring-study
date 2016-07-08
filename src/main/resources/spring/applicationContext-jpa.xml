@@ -10,7 +10,7 @@
           http://www.springframework.org/schema/tx
           http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- 开启注解事务 只对当前配置文件有效 -->
+    <!-- 开启注解事务 扫描@Transactional注解的类定义事务  只对当前配置文件有效-->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
     <!-- 配置Spring Data JPA扫描目录  必须添加事务支持，否则不能修改，新增-->

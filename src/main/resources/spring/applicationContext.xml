@@ -33,7 +33,7 @@
 
     <import resource="classpath:spring/applicationContext-resources.xml"/>
     <import resource="classpath:spring/applicationContext-i18n.xml"/>
-    <import resource="classpath:spring/applicationContext-hibernate.xml"/>
+    <import resource="classpath:spring/applicationContext-jpa.xml"/>
     <import resource="classpath:spring/applicationContext-mysql.xml"/>
 
 </beans>

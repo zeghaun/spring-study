@@ -33,9 +33,7 @@ public class DemoService {
 
 
     public Object getList() {
-        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
-        DemoDao demoDao = new DemoDao(jdbcTemplate);
-        return demoDao.query();
+        return null;
     }
 
     public Object delete() {
@@ -73,6 +71,12 @@ public class DemoService {
         log("**************************");
         log();
         return um;
+    }
+
+    private void demoJDBC() {
+        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
+        DemoDao demoDao = new DemoDao(jdbcTemplate);
+        demoDao.query();
     }
 
     private void log(String str) {
