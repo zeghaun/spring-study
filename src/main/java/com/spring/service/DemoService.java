@@ -54,11 +54,11 @@ public class DemoService {
 
     public Object post(DemoEntity demoEntity) {
         log("-------------------------");
-        DemoEntity demo = demoRepository.findById(2);
-        log(JsonUtil.toJson(demo));
+
         log("**************************");
         log();
 
+        demoRepository.removeByName("zeghaun1");
 
         log("-------------------------");
         Demo um = new Demo();
@@ -72,7 +72,7 @@ public class DemoService {
         testRepository.deleteById(4);
         log("**************************");
         log();
-        return demo;
+        return um;
     }
 
     private void log(String str) {
