@@ -2,7 +2,7 @@
  * @copyright Copyright 1999-2016 © 99.com All rights reserved.
  * @license http://www.99.com/about
  */
-package com.spring.filter;
+package com.spring.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,9 +15,10 @@ import javax.servlet.http.HttpServletResponse;
  * 拦截器处理，需要在xml开启对应配置
  * <p/>
  * 1.还有一个拦截器WebRequestInterceptor，不懂
+ * 2.这个最先执行，比logAspect早
  */
 @Component
-public class ControllerFilter implements HandlerInterceptor {
+public class ControllerInterceptor implements HandlerInterceptor {
 
     /**
      * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，SpringMVC中的Interceptor拦截器是链式的，可以同时存在

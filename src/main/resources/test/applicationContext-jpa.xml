@@ -18,7 +18,7 @@ http://www.springframework.org/schema/data/jpa http://www.springframework.org/sc
 
     <!-- Activates scanning of @controller @service;还具有context:annotation-config 的功能-->
     <context:component-scan
-            base-package="com.spring.controller;com.spring.service;com.spring.filter;com.spring.component;com.spring.repository"/>
+            base-package="com.spring.controller;com.spring.service;com.spring.interceptor;com.spring.component;com.spring.repository"/>
 
     <context:component-scan base-package="com.spring.main">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

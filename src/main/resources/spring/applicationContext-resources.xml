@@ -30,7 +30,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.spring.filter.ControllerFilter"/>
+            <bean class="com.spring.interceptor.ControllerInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

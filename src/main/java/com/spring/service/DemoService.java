@@ -1,10 +1,8 @@
 package com.spring.service;
 
-import com.spring.common.utils.JsonUtil;
 import com.spring.component.JdbcFactory;
 import com.spring.dao.DemoDao;
 import com.spring.entity.DemoEntity;
-import com.spring.main.Demo;
 import com.spring.repository.DemoRepository;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,26 +49,10 @@ public class DemoService {
     }
 
     public Object post(DemoEntity demoEntity) {
-        log("-------------------------");
-
-        log("**************************");
-        log();
 
         demoRepository.removeByName("zeghaun1");
 
-        log("-------------------------");
-        Demo um = new Demo();
-        um.setAge(1);
-        um.setName("zeghaun");
-        um.setRemark("zeghaun");
-        Demo um1 = testRepository.save(um);
-
-        log(JsonUtil.toJson(um1));
-
-        testRepository.deleteById(4);
-        log("**************************");
-        log();
-        return um;
+        return null;
     }
 
     private void demoJDBC() {

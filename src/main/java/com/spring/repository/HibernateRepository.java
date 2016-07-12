@@ -16,6 +16,6 @@ public interface HibernateRepository extends JpaRepository<HibernateEntity, Stri
     HibernateEntity findById(int id);
 
     @Modifying
-    @Query(value = "DELETE FROM HibernateEntity h WHERE h.name=:name")
-    int deleteByName(@Param("name") String name);
+    @Query(value = "DELETE FROM HibernateEntity h WHERE h.value=:value")
+    int deleteByValue(@Param("value") String value);
 }

@@ -2,7 +2,7 @@
  * @copyright Copyright 1999-2016 © 99.com All rights reserved.
  * @license http://www.99.com/about
  */
-package com.spring.filter;
+package com.spring.interceptor;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
