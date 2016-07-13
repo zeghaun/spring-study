@@ -29,26 +29,22 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.ejb.interceptor" value-ref="tableMapperInterceptor"/>
-                <!--切面 没成功-->
+                <!--切面-->
                 <entry key="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
-                <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-                <entry key="hibernate.format_sql" value="true"/>
-                <entry key="hibernate.hbm2ddl.auto" value="none"/>
-                <entry key="hibernate.show_sql" value="true"/>
             </map>
         </property>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="generateDdl" value="true"/>
+                <property name="generateDdl" value="false"/>
                 <property name="database" value="MYSQL"/>
             </bean>
         </property>
     </bean>
 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="entityInterceptor" ref="tableMapperInterceptor"/>
-    </bean>
+    </bean>-->
     <!-- 配置事务异常封装
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->

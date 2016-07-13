@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class TableMapperInterceptor extends EmptyInterceptor {
-    TableMapperInterceptor() {
-        System.out.println("table interceptor:  init");
-    }
 
     @Override
     public String onPrepareStatement(String sql) {

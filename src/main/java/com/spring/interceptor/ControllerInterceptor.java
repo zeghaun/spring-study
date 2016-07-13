@@ -4,8 +4,6 @@
  */
 package com.spring.interceptor;
 
-import com.spring.component.BeanFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,9 +28,11 @@ public class ControllerInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
-        System.out.println("preHandle");
-        log("preHandle");
-        SessionFactory session = (SessionFactory) BeanFactory.getBean("sessionFactory");
+//        log("preHandle");
+
+        //  与xml中intercept有关系。好像可以做切面
+        //SessionFactory session = (SessionFactory) BeanFactory.getBean("sessionFactory");
+
         String a = httpServletRequest.getHeader("Content-Type");
         return true;
     }

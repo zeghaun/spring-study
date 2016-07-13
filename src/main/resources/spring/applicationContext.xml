@@ -32,7 +32,7 @@
         <property name="name" value="${author}"/>
     </bean>
 
-    <import resource="classpath:spring/applicationContext-resources.xml"/>
+    <import resource="classpath:spring/applicationContext-interceptor.xml"/>
     <import resource="classpath:spring/applicationContext-i18n.xml"/>
     <import resource="classpath:spring/applicationContext-jpa.xml"/>
     <import resource="classpath:spring/applicationContext-mysql.xml"/>

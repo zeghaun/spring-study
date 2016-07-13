@@ -19,8 +19,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
  */
 @Configuration
 @EnableWebMvc
-//@ImportResource(value = {"classpath:spring/applicationContext.xml"})
-@ImportResource(value = {"classpath:test/applicationContext-jpa.xml"})
+@ImportResource(value = {"classpath:spring/applicationContext.xml"})
+//@ImportResource(value = {"classpath:test/applicationContext-jpa.xml"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
