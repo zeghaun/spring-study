@@ -1,5 +1,6 @@
 package com.spring.main;
 
+import com.spring.interceptor.TableMapperInterceptor;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -41,7 +42,7 @@ public class AppMain {
 
         c.delete(11146);
 
-        System.out.println("中文中文中".length());
+        System.out.println(TableMapperInterceptor.class.getCanonicalName());
     }
 
     public void test() {
