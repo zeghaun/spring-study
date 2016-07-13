@@ -1,7 +1,9 @@
 package com.spring.main;
 
+import com.spring.component.BeanFactory;
 import com.spring.interceptor.TableMapperInterceptor;
 import com.spring.repository.TestRepository;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -31,7 +33,9 @@ public class AppMain {
 
     public static void main(String[] args) throws SQLException {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("test/applicationContext-jpa.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
+
+        SessionFactory session =(SessionFactory) BeanFactory.getBean("sessionFactory");
 
         AppMain c = (AppMain) ctx.getBean("appMain");
         Demo um = new Demo();

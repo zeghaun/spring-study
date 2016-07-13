@@ -12,7 +12,7 @@
 
     <!-- Activates scanning of @controller @service;还具有context:annotation-config(@Autowired) 的功能-->
     <context:component-scan
-            base-package="com.spring.controller;com.spring.service;com.spring.interceptor;com.spring.component"/>
+            base-package="com.spring.main;com.spring.controller;com.spring.service;com.spring.interceptor;com.spring.component"/>
 
     <!--EL表达式生效 一下导入所有的properties-->
     <context:property-placeholder location="classpath*:*.properties"/>

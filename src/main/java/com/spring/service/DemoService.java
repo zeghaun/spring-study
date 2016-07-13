@@ -22,7 +22,6 @@ public class DemoService {
     @Autowired(required = false)
     JdbcFactory jdbcFactory;
 
-
     @Resource
     private DemoRepository demoRepository;
 
