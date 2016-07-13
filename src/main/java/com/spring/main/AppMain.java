@@ -46,7 +46,7 @@ public class AppMain {
 
         c.delete(11146);
 
-        System.out.println(TableMapperInterceptor.class.getCanonicalName());
+        System.out.println();
     }
 
     public void test() {

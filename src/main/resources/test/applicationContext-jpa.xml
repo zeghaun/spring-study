@@ -61,8 +61,8 @@ http://www.springframework.org/schema/data/jpa http://www.springframework.org/sc
                 <entry key="hibernate.bytecode.use_reflection_optimizer" value="true"/>
                 <entry key="hibernate.cache.use_second_level_cache" value="false"/>
                 <entry key="hibernate.cache.use_query_cache" value="false"/>
-                <entry key="hibernate.ejb.interceptor" value-ref="tableMapperInterceptor"/>
-                <!--切面-->
+                <!-- <entry key="hibernate.ejb.interceptor" value-ref="tableMapperInterceptor"/>
+                 切面-->
             </map>
         </property>
     </bean>

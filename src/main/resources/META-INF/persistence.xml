@@ -19,7 +19,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="javax.persistence.validation.mode" value="none"/>
-            <property name="hibernate.ejb.interceptor" value="com.spring.interceptor.TableMapperInterceptor"/>
+            <!-- <property name="hibernate.ejb.interceptor" value="com.spring.interceptor.TableMapperInterceptor"/>-->
         </properties>
 
     </persistence-unit>
