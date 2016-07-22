@@ -48,10 +48,9 @@ public class DemoService {
     }
 
     public Object post(DemoEntity demoEntity) {
-
-        demoRepository.removeByName("zeghaun1");
-
-        return null;
+        System.out.println("post");
+        demoEntity.setRemark("zeghaun post");
+        return demoEntity;
     }
 
     private void demoJDBC() {
