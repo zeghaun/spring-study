@@ -14,7 +14,6 @@ public class HelloController {
     @RequestMapping(value = "/hello")
     @ResponseStatus(HttpStatus.OK)
     public String hello(@RequestParam(value = "name", required = false, defaultValue = "zeghaun") String name) {
-
         return "hello:" + name;
     }
 

@@ -32,8 +32,10 @@ public class ControllerInterceptor implements HandlerInterceptor {
 
         //  与xml中intercept有关系。好像可以做切面
         //SessionFactory session = (SessionFactory) BeanFactory.getBean("sessionFactory");
-        System.out.println("preHandle:"+httpServletRequest.getMethod());
-        String a = httpServletRequest.getHeader("Content-Type");
+        log();
+
+        log("preHandle:" + httpServletRequest.getMethod() + "    " + System.currentTimeMillis() % 10000);
+        log("preHandle:" + httpServletRequest.getHeader("Content-Type"));
         return true;
     }
 
@@ -60,5 +62,9 @@ public class ControllerInterceptor implements HandlerInterceptor {
 
     private void log(String str) {
         System.out.println(str);
+    }
+
+    private void log() {
+        log("");
     }
 }
