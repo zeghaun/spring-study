@@ -46,7 +46,7 @@ public class DemoControllerTest extends AbstractTest {
      */
     @Test
     public void testGet() throws Exception {
-        String url = pre;
+        String url = pre + "?$offset=0&$limit=2";
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.request(HttpMethod.GET, url)
                 .characterEncoding(CharEncoding.UTF_8)
