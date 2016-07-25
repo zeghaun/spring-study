@@ -1,7 +1,6 @@
 package com.spring.service;
 
 import com.spring.component.JdbcFactory;
-import com.spring.dao.DemoDao;
 import com.spring.entity.DemoEntity;
 import com.spring.repository.DemoRepository;
 import com.spring.repository.TestRepository;
@@ -34,17 +33,11 @@ public class DemoService {
     }
 
     public Object delete() {
-        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
-        DemoDao demoDao = new DemoDao(jdbcTemplate);
-
-        return demoDao.delete("");
+        return "delete";
     }
 
     public Object update() {
-        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
-        DemoDao demoDao = new DemoDao(jdbcTemplate);
-
-        return demoDao.update();
+        return "update";
     }
 
     public Object post(DemoEntity demoEntity) {
@@ -55,8 +48,7 @@ public class DemoService {
 
     private void demoJDBC() {
         JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
-        DemoDao demoDao = new DemoDao(jdbcTemplate);
-        demoDao.query();
+
     }
 
     private void log(String str) {
