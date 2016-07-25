@@ -15,7 +15,6 @@ public class DemoMapper implements RowMapper<DemoEntity> {
     public DemoEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
         DemoEntity model = new DemoEntity();
 
-        model.setId(rs.getInt("id"));
         model.setName(rs.getString("name"));
         model.setAge(rs.getInt("age"));
         model.setRemark(rs.getString("remark"));

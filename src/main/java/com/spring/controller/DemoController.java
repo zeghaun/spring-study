@@ -1,7 +1,8 @@
 package com.spring.controller;
 
 import com.spring.common.exception.FieldException;
-import com.spring.common.validator.Create;
+import com.spring.common.utils.JsonUtil;
+import com.spring.common.validator.groups.Create;
 import com.spring.entity.DemoEntity;
 import com.spring.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class DemoController {
         } else if (errors.hasGlobalErrors()) {
             throw new FieldException(errors.getGlobalError());
         }
-
+        log(JsonUtil.toJson(demoEntity));
         return demoService.post(demoEntity);
     }
 
@@ -58,16 +59,7 @@ public class DemoController {
         return null;
     }
 
-
-    private static void log(String str) {
-        System.out.println(str);
-    }
-
-    private static void log(double str) {
-        System.out.println(str);
-    }
-
-    private static void log(int str) {
+    private void log(String str) {
         System.out.println(str);
     }
 }

@@ -18,21 +18,21 @@ public class HelloController {
     }
 
     /**
-     * /test?id=abc
+     * /test?name=abc
      *
-     * @param id
+     * @param name
      * @return
      */
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String get(@RequestParam("id") String id) {
-        System.out.println("test:" + id);
-        return "get";
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String get(@RequestParam("name") String name) {
+        System.out.println("hello:" + name);
+        return "get:" + name;
     }
 
-    @RequestMapping(value = "/test/{id}/{id2}")
+    @RequestMapping(value = "/hello/{id}/{id2}",method = RequestMethod.GET)
     public String getRestFul(@PathVariable("id2") String id2, @PathVariable("id") String id) {
-        System.out.println("test:" + id + "---" + id2);
-        return "getRestFul";
+        System.out.println("hello:" + id + "---" + id2);
+        return "hello";
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.POST)
@@ -53,4 +53,11 @@ public class HelloController {
         return "head";
     }
 
+    private void log(String str) {
+        System.out.println(str);
+    }
+
+    private void log() {
+        log("");
+    }
 }

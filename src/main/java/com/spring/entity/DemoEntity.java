@@ -5,8 +5,9 @@
 package com.spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.spring.common.validator.Create;
-import com.spring.common.validator.Modify;
+import com.spring.common.validator.constraint.Even;
+import com.spring.common.validator.groups.Create;
+import com.spring.common.validator.groups.Modify;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -26,6 +27,7 @@ public class DemoEntity implements Serializable {
     //hibernate 要特别加@Id 搞不懂为啥
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonInclude
     private int id;
 
     @NotBlank(message = "name", groups = {Create.class, Modify.class})
@@ -33,6 +35,7 @@ public class DemoEntity implements Serializable {
     private String name;
 
     @Range(min = 0, max = 150, message = "{age}", groups = {Create.class, Modify.class})
+    @Even(message = "{even.age}", groups = {Create.class, Modify.class})
     private int age;
 
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
