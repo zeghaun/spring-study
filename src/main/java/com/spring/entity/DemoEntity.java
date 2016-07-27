@@ -41,7 +41,8 @@ public class DemoEntity implements Serializable {
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
 
-    @OneToOne(mappedBy = "demoEntity", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "remark", referencedColumnName = "key", insertable = false, updatable = false)
     private HibernateEntity hibernateEntity;
 
     public HibernateEntity getHibernateEntity() {

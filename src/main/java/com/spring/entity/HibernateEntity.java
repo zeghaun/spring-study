@@ -22,17 +22,6 @@ public class HibernateEntity  implements Serializable {
 
     private String value;
 
-    @OneToOne
-    private DemoEntity demoEntity;
-
-    public DemoEntity getDemoEntity() {
-        return demoEntity;
-    }
-
-    public void setDemoEntity(DemoEntity demoEntity) {
-        this.demoEntity = demoEntity;
-    }
-
     public int getId() {
         return id;
     }
