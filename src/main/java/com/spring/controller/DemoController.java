@@ -27,13 +27,29 @@ public class DemoController {
     @Autowired
     private DemoService demoService;
 
+    /**
+     * [GET]    ?$offset={offset}&$limit={limit}
+     *
+     * @return
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Object get() {
-        return demoService.getList();
+    public Object get(@RequestParam(value = "$offset", defaultValue = "0") int offset,
+                      @RequestParam(value = "$limit", defaultValue = "20") int limit) {
+        if (limit > 50) {
+            limit = 50;
+        }
+        return demoService.getList(offset, limit);
     }
 
-
+    /**
+     * [POST]
+     *
+     * @param demoEntity
+     * @param errors
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Object post(@RequestBody @Validated(Create.class) DemoEntity demoEntity, Errors errors) throws Exception {

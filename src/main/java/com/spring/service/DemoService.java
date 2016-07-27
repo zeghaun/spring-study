@@ -1,10 +1,12 @@
 package com.spring.service;
 
+import com.spring.common.query.OffsetPage;
 import com.spring.component.JdbcFactory;
 import com.spring.entity.DemoEntity;
 import com.spring.repository.DemoRepository;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +30,10 @@ public class DemoService {
     private TestRepository testRepository;
 
 
-    public Object getList() {
-        return null;
+    public Object getList(int offset, int limit) {
+        Pageable pageable = OffsetPage.createPage(offset, limit);
+//        return demoRepository.getDemoEntityList(pageable);
+        return demoRepository.getByJoin();
     }
 
     public Object delete() {
@@ -41,8 +45,8 @@ public class DemoService {
     }
 
     public Object post(DemoEntity demoEntity) {
-        System.out.println("post");
         demoEntity.setRemark("zeghaun post");
+        demoRepository.save(demoEntity);
         return demoEntity;
     }
 

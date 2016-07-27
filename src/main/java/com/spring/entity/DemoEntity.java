@@ -20,10 +20,10 @@ import java.io.Serializable;
 @Table(name = "demo")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DemoEntity implements Serializable {
+    private static final long serialVersionUID = -4986897468519809465L;
     /**
      * Default serial version ID.
      */
-    private static final long serialVersionUID = 1L;
     //hibernate 要特别加@Id 搞不懂为啥
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,6 +40,28 @@ public class DemoEntity implements Serializable {
 
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
+
+    @OneToOne(mappedBy = "demoEntity", fetch = FetchType.LAZY)
+    private HibernateEntity hibernateEntity;
+
+    public HibernateEntity getHibernateEntity() {
+        return hibernateEntity;
+    }
+
+    public void setHibernateEntity(HibernateEntity hibernateEntity) {
+        this.hibernateEntity = hibernateEntity;
+    }
+
+    public DemoEntity() {
+
+    }
+
+    public DemoEntity(int id, String name, int age, String remark) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.remark = remark;
+    }
 
     public int getId() {
         return id;

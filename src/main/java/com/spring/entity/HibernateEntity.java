@@ -3,6 +3,7 @@ package com.spring.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
@@ -11,7 +12,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "hibernate")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class HibernateEntity {
+public class HibernateEntity  implements Serializable {
+    private static final long serialVersionUID = -1369937499218926305L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -19,6 +21,17 @@ public class HibernateEntity {
     private String key;
 
     private String value;
+
+    @OneToOne
+    private DemoEntity demoEntity;
+
+    public DemoEntity getDemoEntity() {
+        return demoEntity;
+    }
+
+    public void setDemoEntity(DemoEntity demoEntity) {
+        this.demoEntity = demoEntity;
+    }
 
     public int getId() {
         return id;
