@@ -30,7 +30,7 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     //这里必须加fetch才不会延迟加载，与DemoEntity中的@oneToOne无关，，与实际项目中不一样  奇怪
     @Query(value = "SELECT d " +
             "from DemoEntity d " +
-            "LEFT JOIN fetch d.hibernateEntity t " +
+            "LEFT JOIN FETCH d.hibernateEntity t " +
             "where d.id=30")
     DemoEntity getByJoin();
 
