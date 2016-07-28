@@ -12,6 +12,9 @@ public class TableMapperInterceptor extends EmptyInterceptor {
 
     @Override
     public String onPrepareStatement(String sql) {
+
+        System.out.println();
+        System.out.println();
         System.out.println("table interceptor:" + sql);
 
         return sql;

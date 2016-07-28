@@ -41,8 +41,8 @@ public class DemoEntity implements Serializable {
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "remark", referencedColumnName = "key", insertable = false, updatable = false)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private HibernateEntity hibernateEntity;
 
     public HibernateEntity getHibernateEntity() {
@@ -70,6 +70,14 @@ public class DemoEntity implements Serializable {
         this.age = age;
         this.remark = remark;
         this.hibernateEntity = hibernateEntity;
+    }
+
+    public DemoEntity(int id, String name, int age, String remark, int hId) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.remark = remark;
+        System.out.println(hId);
     }
 
     public int getId() {
