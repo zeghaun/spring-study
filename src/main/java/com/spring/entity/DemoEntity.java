@@ -64,6 +64,14 @@ public class DemoEntity implements Serializable {
         this.remark = remark;
     }
 
+    public DemoEntity(int id, String name, int age, String remark, HibernateEntity hibernateEntity) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.remark = remark;
+        this.hibernateEntity = hibernateEntity;
+    }
+
     public int getId() {
         return id;
     }

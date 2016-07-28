@@ -4,6 +4,7 @@ import com.spring.entity.DemoEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -26,6 +27,20 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,d.age,d.remark) FROM DemoEntity d")
     List<DemoEntity> getDemoEntityList(Pageable pageable);
 
-    @Query(value = "SELECT d from DemoEntity d LEFT JOIN fetch d.hibernateEntity where d.id=30")
+    @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,d.age,d.remark,t) " +
+            "from DemoEntity d " +
+            "LEFT JOIN d.hibernateEntity t " +
+            "where d.id=30")
     DemoEntity getByJoin();
+
+
+    /**
+     * 标准的left join查找书籍
+     */
+//    @Query("SELECT new com.nd.elibrary.modules.bookmanagement.domain.DetailBook(d.detailBookId,d.bookId,d.libraryId,d.book) " +
+//            "FROM DetailBook d " +
+//            "LEFT JOIN d.book " +
+//            "WHERE d.detailBookId in(:detailBookId)")
+//    List<DetailBook> findByDetailBookId(@Param("detailBookId") List<Long> detailBookId);
+
 }

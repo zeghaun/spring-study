@@ -37,7 +37,6 @@ public class FieldException extends RuntimeException {
         Object[] rsArgs = new Object[args.length];
         for (int i = 0; i < args.length; i++) {
             rsArgs[i] = args[args.length - 1 - i];
-            ;
         }
         return rsArgs;
     }
