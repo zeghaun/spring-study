@@ -27,16 +27,27 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,d.age,d.remark) FROM DemoEntity d")
     List<DemoEntity> getDemoEntityList(Pageable pageable);
 
-    //这里必须加fetch才不会延迟加载，与DemoEntity中的@oneToOne无关，，与实际项目中不一样  奇怪
+
     @Query(value = "SELECT d " +
             "from DemoEntity d " +
-            "LEFT JOIN FETCH d.hibernateEntity t " +
+            "LEFT JOIN fetch d.hibernateEntity t " +
+            "where d.id=30")
+    DemoEntity getByJoind();
+
+    //
+    @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,d) " +
+            "from DemoEntity d " +
+            "LEFT JOIN fetch d.hibernateEntity t " +
             "where d.id=30")
     DemoEntity getByJoin();
 
 
+    DemoEntity findByName(String name);
     /**
-     * 标准的left join查找书籍
+     * 标准的left join查找书籍,可以批量查找
+     * 1.使用new和d（entity）是走不一样的规则，使用d是可以正常的使用FETCH
+     * 2.使用new 那么lazy和EAGER都没有用了，会直接left join 加载
+     * 3.如果你使用fetch,那么fetch左边的连接对象(拥有者)一定要出现在select后，select d ***
      */
 //    @Query("SELECT new com.nd.elibrary.modules.bookmanagement.domain.DetailBook(d.detailBookId,d.bookId,d.libraryId,d.book) " +
 //            "FROM DetailBook d " +

@@ -15,7 +15,7 @@ public class TableMapperInterceptor extends EmptyInterceptor {
 
         System.out.println();
         System.out.println();
-        System.out.println("table interceptor:" + sql);
+//        System.out.println("table interceptor:" + sql);
 
         return sql;
     }

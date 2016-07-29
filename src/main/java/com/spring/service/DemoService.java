@@ -1,6 +1,7 @@
 package com.spring.service;
 
 import com.spring.common.query.OffsetPage;
+import com.spring.common.utils.JsonUtil;
 import com.spring.component.JdbcFactory;
 import com.spring.entity.DemoEntity;
 import com.spring.repository.DemoRepository;
@@ -33,15 +34,28 @@ public class DemoService {
     public Object getList(int offset, int limit) {
         Pageable pageable = OffsetPage.createPage(offset, limit);
 //        return demoRepository.getDemoEntityList(pageable);
-        return demoRepository.getByJoin();
+
+
+        log(JsonUtil.toJson(demoRepository.getByJoind()));
+        log("doing left join d....");
+        log();
+        log();
+        log(JsonUtil.toJson(demoRepository.getByJoin()));
+        log("doing left join ....");
+        log();
+        log();
+        log(JsonUtil.toJson(demoRepository.findByName("hibernate")));
+        log("原生 ....");
+
+        return "";
     }
 
     public Object delete() {
         return "delete";
     }
 
-    public Object update() {
-        return "update";
+    public Object patch() {
+        return demoRepository.findByName("hibernate");
     }
 
     public Object post(DemoEntity demoEntity) {

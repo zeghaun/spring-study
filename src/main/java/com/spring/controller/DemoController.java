@@ -72,7 +72,7 @@ public class DemoController {
     @RequestMapping(value = "", method = RequestMethod.PATCH)
     public Object patch() {
 
-        return null;
+        return demoService.patch();
     }
 
     private void log(String str) {
