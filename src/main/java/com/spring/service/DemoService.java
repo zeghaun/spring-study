@@ -35,9 +35,6 @@ public class DemoService {
         Pageable pageable = OffsetPage.createPage(offset, limit);
 //        return demoRepository.getDemoEntityList(pageable);
 
-
-        log(JsonUtil.toJson(demoRepository.getByJoind()));
-        log("doing left join d....");
         log();
         log();
         log(JsonUtil.toJson(demoRepository.getByJoin()));
@@ -46,7 +43,10 @@ public class DemoService {
         log();
         log(JsonUtil.toJson(demoRepository.findByName("hibernate")));
         log("原生 ....");
-
+        log();
+        log();
+        log(JsonUtil.toJson(demoRepository.findByName("hibernate")));
+        log("原生 ....");
         return "";
     }
 

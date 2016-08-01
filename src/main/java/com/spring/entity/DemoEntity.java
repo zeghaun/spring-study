@@ -41,6 +41,9 @@ public class DemoEntity implements Serializable {
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
 
+
+    private Boolean isDelete = false;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private HibernateEntity hibernateEntity;
@@ -64,10 +67,10 @@ public class DemoEntity implements Serializable {
         System.out.println("DemoEntity");
     }
 
-    public DemoEntity(int id, String name, DemoEntity hibernateEntity) {
+    public DemoEntity(int id, String name, int ids) {
         this.id = id;
         this.name = name;
-        System.out.println("DemoEntity hibernateEntity");
+        System.out.println("DemoEntity hibernateEntity:" + ids);
     }
 
     public DemoEntity(int id, String name, String key, String value) {
@@ -91,6 +94,14 @@ public class DemoEntity implements Serializable {
         this.age = age;
         this.remark = remark;
         this.hibernateEntity = hibernateEntity;
+    }
+
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) throws Exception {
+            this.isDelete = isDelete;
     }
 
     public int getId() {

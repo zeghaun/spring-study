@@ -1,9 +1,6 @@
 package com.spring.main;
 
-import com.spring.component.BeanFactory;
-import com.spring.interceptor.TableMapperInterceptor;
 import com.spring.repository.TestRepository;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -33,18 +30,18 @@ public class AppMain {
 
     public static void main(String[] args) throws SQLException {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
-
-        SessionFactory session =(SessionFactory) BeanFactory.getBean("sessionFactory");
-
-        AppMain c = (AppMain) ctx.getBean("appMain");
-        Demo um = new Demo();
-        um.setAge(15);
-        um.setName("zeghaun");
-        um.setRemark("zeghaun");
-        c.add(um);
-
-        c.delete(11146);
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
+//
+//        SessionFactory session =(SessionFactory) BeanFactory.getBean("sessionFactory");
+//
+//        AppMain c = (AppMain) ctx.getBean("appMain");
+//        Demo um = new Demo();
+//        um.setAge(15);
+//        um.setName("zeghaun");
+//        um.setRemark("zeghaun");
+//        c.add(um);
+//
+//        c.delete(11146);
 
         System.out.println();
     }
