@@ -68,7 +68,6 @@ public class DemoControllerTest extends AbstractTest {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", "zeg" + System.currentTimeMillis() / (10 ^ 4));
         map.put("age", 16);
-        map.put("isDelete", 16);
         map.put("remark", System.currentTimeMillis());
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.request(HttpMethod.POST, url)

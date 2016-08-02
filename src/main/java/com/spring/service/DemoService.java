@@ -37,15 +37,18 @@ public class DemoService {
 
         log();
         log();
-        log(JsonUtil.toJson(demoRepository.getByJoin()));
+        DemoEntity d = demoRepository.getByJoin();
+        log(JsonUtil.toJson(d));
         log("doing left join ....");
         log();
         log();
-        log(JsonUtil.toJson(demoRepository.findByName("hibernate")));
+        DemoEntity dd = demoRepository.findByName("hibernate");
+        log(JsonUtil.toJson(dd));
         log("原生 ....");
         log();
         log();
-        log(JsonUtil.toJson(demoRepository.findByName("hibernate")));
+        DemoEntity ddd = demoRepository.findByName("hibernate");
+        log(JsonUtil.toJson(ddd));
         log("原生 ....");
         return "";
     }

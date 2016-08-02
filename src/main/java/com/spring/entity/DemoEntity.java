@@ -42,8 +42,6 @@ public class DemoEntity implements Serializable {
     private String remark;
 
 
-    private Boolean isDelete = false;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private HibernateEntity hibernateEntity;
@@ -76,7 +74,6 @@ public class DemoEntity implements Serializable {
     public DemoEntity(int id, String name, String key, String value) {
         this.id = id;
         this.name = name;
-        this.hibernateEntity = hibernateEntity;
         System.out.println();
         System.out.println("key:" + key + "  value:" + value);
     }
@@ -94,14 +91,6 @@ public class DemoEntity implements Serializable {
         this.age = age;
         this.remark = remark;
         this.hibernateEntity = hibernateEntity;
-    }
-
-    public Boolean getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Boolean isDelete) throws Exception {
-            this.isDelete = isDelete;
     }
 
     public int getId() {
@@ -136,3 +125,58 @@ public class DemoEntity implements Serializable {
         this.remark = remark;
     }
 }
+//
+//
+//@Entity
+//@Table(name = "orders")
+//class Order {
+//
+//    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "order")
+//    private Collection lineItems = new HashSet<>();
+//
+//    @OneToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "order")
+//    @JoinColumn(name = "order_id")
+//    private OrderPrice salePrice;
+//
+//    @OneToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
+//}
+//
+//@Entity
+//@Table(name = "order_items")
+//class LineItem {
+//
+//    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST,
+//            CascadeType.REFRESH}, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+//    private Order order;
+//
+//}
+//
+//@Entity
+//@Table(name = "order_finance")
+//@AttributeOverride(name = "id", column = @Column(name = "order_id"))
+//class OrderPrice extends Price {
+//
+//    private Order order;
+//
+//    @OneToOne(cascade = {}, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+//    public Order getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Order order) {
+//        this.order = order;
+//    }
+//
+//}
+//
+//@MappedSupperclass
+//@Table(name = "order_finance")
+//class Price {
+//    @Id
+//    public Integer getId() {
+//    }
+//}

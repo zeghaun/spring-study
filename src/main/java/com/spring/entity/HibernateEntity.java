@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "hibernate")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class HibernateEntity  implements Serializable {
+public class HibernateEntity implements Serializable {
     private static final long serialVersionUID = -1369937499218926305L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +21,10 @@ public class HibernateEntity  implements Serializable {
     private String key;
 
     private String value;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+    private DemoEntity demoEntity;
 
     public int getId() {
         return id;

@@ -28,7 +28,7 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     List<DemoEntity> getDemoEntityList(Pageable pageable);
 
     //
-    @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,t.id) " +
+    @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,t.key,t.value) " +
             "from DemoEntity d " +
             "LEFT JOIN d.hibernateEntity t " +
             "where d.id=30")
