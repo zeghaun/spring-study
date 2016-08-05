@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.spring.common.validator.constraint.Even;
 import com.spring.common.validator.groups.Create;
 import com.spring.common.validator.groups.Modify;
+import org.hibernate.annotations.DiscriminatorOptions;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -23,6 +24,8 @@ import java.io.Serializable;
         name = "DD",
         discriminatorType = DiscriminatorType.STRING
 )
+@DiscriminatorOptions(force=false,insert = false)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DemoEntity implements Serializable {
     private static final long serialVersionUID = -4986897468519809465L;
@@ -37,6 +40,7 @@ public class DemoEntity implements Serializable {
 
     @NotBlank(message = "name", groups = {Create.class, Modify.class})
     @Pattern(regexp = "^[a-zA-Z]{1,10}$", message = "{evaluation.dentry_id.illegal}")
+    @Column(name="name")
     protected String name;
 
     @Range(min = 0, max = 150, message = "{age}", groups = {Create.class, Modify.class})
@@ -47,7 +51,7 @@ public class DemoEntity implements Serializable {
     protected String remark;
 
     public DemoEntity() {
-        this.name="DemoEntity";
+        this.name = "DemoEntity";
     }
 
     public DemoEntity(int id, String name) {

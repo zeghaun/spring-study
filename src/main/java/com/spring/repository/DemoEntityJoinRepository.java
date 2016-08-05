@@ -15,7 +15,7 @@ public interface DemoEntityJoinRepository extends JpaRepository<DemoEntityJoin, 
     DemoEntityJoin findFirstByName(String name);
 
     //
-    @Query(value = "SELECT new com.spring.entity.DemoEntityJoin(d.id,d.name,d.age,d.remark,t) " +
+    @Query(value = "SELECT new com.spring.entity.DemoEntityJoin(d.id,d.name,t.key,t.value) " +
             "from DemoEntityJoin d " +
             "LEFT JOIN d.hibernateEntity t " +
             "where d.id=?1")

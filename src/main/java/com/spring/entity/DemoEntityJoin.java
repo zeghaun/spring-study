@@ -9,25 +9,12 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "demo")
-@DiscriminatorValue("null")
+@DiscriminatorValue("DemoEntityJoin")
 public class DemoEntityJoin extends DemoEntity implements Serializable {
 
     private static final long serialVersionUID = 3983966738189756001L;
 
-    public DemoEntityJoin() {
-        this.setRemark("DemoEntityJoin");
-        this.setName("new save");
-    }
-
-    public DemoEntityJoin(int id, String name, int age, String remark, HibernateEntity hibernateEntity) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.remark = remark;
-        this.hibernateEntity = hibernateEntity;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "name", referencedColumnName = "key", insertable = false, updatable = false)
     private HibernateEntity hibernateEntity;
 
@@ -37,6 +24,17 @@ public class DemoEntityJoin extends DemoEntity implements Serializable {
 
     public void setHibernateEntity(HibernateEntity hibernateEntity) {
         this.hibernateEntity = hibernateEntity;
+    }
+
+    public DemoEntityJoin() {
+        this.setRemark("DemoEntityJoin");
+        this.setName("new save");
+    }
+
+    public DemoEntityJoin(int id, String name, String key, String value) {
+        this.id = id;
+        this.name = name;
+        System.out.println("key:" + key + "  value:" + value);
     }
 }
 

@@ -13,7 +13,7 @@ import java.util.List;
  * @version Created by zhenghuan on 2016/7/7
  */
 @Repository
-public interface DemoRepository extends JpaRepository<DemoEntity, String> {
+public interface DemoRepository extends JpaRepository<DemoEntity, Integer> {
 
     DemoEntity findById(int id);
 
@@ -29,6 +29,7 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
 
 
     DemoEntity findFirstByName(String name);
+
     /**
      * 标准的left join查找书籍,可以批量查找
      * 1.使用new和d（entity）是走不一样的规则，使用d是可以正常的使用FETCH
