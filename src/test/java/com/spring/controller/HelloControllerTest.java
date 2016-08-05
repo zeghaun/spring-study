@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,14 +40,12 @@ public class HelloControllerTest extends AbstractTest {
      */
     @Test
     public void testHello() throws Exception {
-        String url = "/hello";
+        String url = "/hello?name=1651631638513153153153";
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.request(HttpMethod.GET, url)
                 .characterEncoding(CharEncoding.UTF_8)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
-
-        mockMvc = MockMvcBuilders.standaloneSetup(webApplicationContext).build();
 
         ResultActions result = mockMvc.perform(request);
         mvcResult = result.andDo(MockMvcResultHandlers.print())

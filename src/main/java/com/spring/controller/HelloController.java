@@ -1,9 +1,11 @@
 package com.spring.controller;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping()
 public class HelloController {
     /**
      * /hello?name=abc
@@ -11,9 +13,10 @@ public class HelloController {
      * @param name
      * @return
      */
-    @RequestMapping(value = "/hello")
+    @RequestMapping(value = "/hello", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public String hello(@RequestParam(value = "name", required = false, defaultValue = "zeghaun") String name) {
+    public String hello(@RequestParam(value = "name", required = false, defaultValue = "zeghaun")
+                        @Length(min = 1, max = 5, message = "122222222222") String name) {
         return "hello:" + name;
     }
 
@@ -29,7 +32,7 @@ public class HelloController {
         return "get:" + name;
     }
 
-    @RequestMapping(value = "/hello/{id}/{id2}",method = RequestMethod.GET)
+    @RequestMapping(value = "/hello/{id}/{id2}", method = RequestMethod.GET)
     public String getRestFul(@PathVariable("id2") String id2, @PathVariable("id") String id) {
         System.out.println("hello:" + id + "---" + id2);
         return "hello";

@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "demo")
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DemoEntity implements Serializable {
     private static final long serialVersionUID = -4986897468519809465L;
@@ -41,41 +41,14 @@ public class DemoEntity implements Serializable {
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
     private String remark;
 
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-    private HibernateEntity hibernateEntity;
-
-    public HibernateEntity getHibernateEntity() {
-        return hibernateEntity;
-    }
-
-    public void setHibernateEntity(HibernateEntity hibernateEntity) {
-        this.hibernateEntity = hibernateEntity;
-    }
-
     public DemoEntity() {
 
     }
-
 
     public DemoEntity(int id, String name) {
         this.id = id;
         this.name = name;
         System.out.println("DemoEntity");
-    }
-
-    public DemoEntity(int id, String name, int ids) {
-        this.id = id;
-        this.name = name;
-        System.out.println("DemoEntity hibernateEntity:" + ids);
-    }
-
-    public DemoEntity(int id, String name, String key, String value) {
-        this.id = id;
-        this.name = name;
-        System.out.println();
-        System.out.println("key:" + key + "  value:" + value);
     }
 
     public DemoEntity(int id, String name, int age, String remark) {
@@ -85,13 +58,6 @@ public class DemoEntity implements Serializable {
         this.remark = remark;
     }
 
-    public DemoEntity(int id, String name, int age, String remark, HibernateEntity hibernateEntity) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.remark = remark;
-        this.hibernateEntity = hibernateEntity;
-    }
 
     public int getId() {
         return id;

@@ -22,10 +22,6 @@ public class HibernateEntity implements Serializable {
 
     private String value;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-    private DemoEntity demoEntity;
-
     public int getId() {
         return id;
     }

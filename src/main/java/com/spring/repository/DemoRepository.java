@@ -4,7 +4,7 @@ import com.spring.entity.DemoEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @author zhenghuan (zeghaun@163.com)
  * @version Created by zhenghuan on 2016/7/7
  */
-
+@Repository
 public interface DemoRepository extends JpaRepository<DemoEntity, String> {
 
     DemoEntity findById(int id);
@@ -27,15 +27,10 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,d.age,d.remark) FROM DemoEntity d")
     List<DemoEntity> getDemoEntityList(Pageable pageable);
 
-    //
-    @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,t.key,t.value) " +
-            "from DemoEntity d " +
-            "LEFT JOIN d.hibernateEntity t " +
-            "where d.id=30")
-    DemoEntity getByJoin();
 
 
-    DemoEntity findByName(String name);
+    @Query(value = "SELECT d FROM DemoEntity d WHERE d.name=?1")
+    DemoEntity findFirstByName(String name);
     /**
      * 标准的left join查找书籍,可以批量查找
      * 1.使用new和d（entity）是走不一样的规则，使用d是可以正常的使用FETCH

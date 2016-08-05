@@ -4,6 +4,8 @@ import com.spring.common.query.OffsetPage;
 import com.spring.common.utils.JsonUtil;
 import com.spring.component.JdbcFactory;
 import com.spring.entity.DemoEntity;
+import com.spring.entity.DemoEntityJoin;
+import com.spring.repository.DemoEntityJoinRepository;
 import com.spring.repository.DemoRepository;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,8 @@ public class DemoService {
     @Resource
     private TestRepository testRepository;
 
+    @Resource
+    private DemoEntityJoinRepository demoEntityJoinRepository;
 
     public Object getList(int offset, int limit) {
         Pageable pageable = OffsetPage.createPage(offset, limit);
@@ -37,18 +41,18 @@ public class DemoService {
 
         log();
         log();
-        DemoEntity d = demoRepository.getByJoin();
-        log(JsonUtil.toJson(d));
+        DemoEntity d = demoEntityJoinRepository.getByJoin(30);
+        log("json:" + JsonUtil.toJson(d));
         log("doing left join ....");
         log();
         log();
-        DemoEntity dd = demoRepository.findByName("hibernate");
-        log(JsonUtil.toJson(dd));
+        DemoEntity dd = demoRepository.findFirstByName("key");
+        log("json:" + JsonUtil.toJson(dd));
         log("原生 ....");
         log();
         log();
-        DemoEntity ddd = demoRepository.findByName("hibernate");
-        log(JsonUtil.toJson(ddd));
+        DemoEntityJoin ddd = demoEntityJoinRepository.findFirstByName("abc");
+        log("json:" + JsonUtil.toJson(ddd));
         log("原生 ....");
         return "";
     }
@@ -58,7 +62,7 @@ public class DemoService {
     }
 
     public Object patch() {
-        return demoRepository.findByName("hibernate");
+        return demoRepository.findFirstByName("hibernate");
     }
 
     public Object post(DemoEntity demoEntity) {
