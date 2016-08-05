@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * @version Created by zhenghuan on 2016/8/5
  */
 @Repository
-public interface DemoEntityJoinRepository extends JpaRepository<DemoEntityJoin, String> {
+public interface DemoEntityJoinRepository extends JpaRepository<DemoEntityJoin, Integer> {
 
     DemoEntityJoin findFirstByName(String name);
 
