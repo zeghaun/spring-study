@@ -17,7 +17,6 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 @Entity
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DemoEntity implements Serializable {
     private static final long serialVersionUID = -4986897468519809465L;
@@ -28,18 +27,18 @@ public class DemoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonInclude
-    private int id;
+    protected int id;
 
     @NotBlank(message = "name", groups = {Create.class, Modify.class})
     @Pattern(regexp = "^[a-zA-Z]{1,10}$", message = "{evaluation.dentry_id.illegal}")
-    private String name;
+    protected String name;
 
     @Range(min = 0, max = 150, message = "{age}", groups = {Create.class, Modify.class})
     @Even(message = "{even.age}", groups = {Create.class, Modify.class})
-    private int age;
+    protected int age;
 
     @Length(min = 0, max = 255, message = " remark ", groups = {Create.class, Modify.class})
-    private String remark;
+    protected String remark;
 
     public DemoEntity() {
 
