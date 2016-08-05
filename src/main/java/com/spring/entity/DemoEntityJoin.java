@@ -1,7 +1,5 @@
 package com.spring.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,12 +9,25 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "demo")
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@DiscriminatorValue("null")
 public class DemoEntityJoin extends DemoEntity implements Serializable {
 
     private static final long serialVersionUID = 3983966738189756001L;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    public DemoEntityJoin() {
+        this.setRemark("DemoEntityJoin");
+        this.setName("new save");
+    }
+
+    public DemoEntityJoin(int id, String name, int age, String remark, HibernateEntity hibernateEntity) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.remark = remark;
+        this.hibernateEntity = hibernateEntity;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "name", referencedColumnName = "key", insertable = false, updatable = false)
     private HibernateEntity hibernateEntity;
 

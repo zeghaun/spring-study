@@ -17,6 +17,12 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "demo")
+@DiscriminatorValue("DemoEntity")
+@DiscriminatorColumn(
+        name = "DD",
+        discriminatorType = DiscriminatorType.STRING
+)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DemoEntity implements Serializable {
     private static final long serialVersionUID = -4986897468519809465L;
@@ -41,7 +47,7 @@ public class DemoEntity implements Serializable {
     protected String remark;
 
     public DemoEntity() {
-
+        this.name="DemoEntity";
     }
 
     public DemoEntity(int id, String name) {

@@ -39,21 +39,23 @@ public class DemoService {
         Pageable pageable = OffsetPage.createPage(offset, limit);
 //        return demoRepository.getDemoEntityList(pageable);
 
+//        demoEntityJoinRepository.save(new DemoEntityJoin());
+//        demoRepository.save(new DemoEntity());
         log();
         log();
-        DemoEntity d = demoEntityJoinRepository.getByJoin(30);
-        log("json:" + JsonUtil.toJson(d));
+        DemoEntityJoin d = demoEntityJoinRepository.getByJoin(70);
+        log("json1:" + JsonUtil.toJson(d));
         log("doing left join ....");
-        log();
-        log();
-        DemoEntity dd = demoRepository.findFirstByName("key");
-        log("json:" + JsonUtil.toJson(dd));
-        log("原生 ....");
-        log();
-        log();
+//        log();
+//        log();
+//        DemoEntity dd = demoRepository.findFirstByName("key");
+//        log("json2:" + JsonUtil.toJson(dd));
+//        log("原生 ....");
+//        log();
+//        log();
         DemoEntityJoin ddd = demoEntityJoinRepository.findFirstByName("abc");
-        log("json:" + JsonUtil.toJson(ddd));
-        log("原生 ....");
+        log("json3:" + JsonUtil.toJson(ddd));
+//        log("原生 ....");
         return "";
     }
 

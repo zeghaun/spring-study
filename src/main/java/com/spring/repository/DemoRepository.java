@@ -28,8 +28,6 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     List<DemoEntity> getDemoEntityList(Pageable pageable);
 
 
-
-    @Query(value = "SELECT d FROM DemoEntity d WHERE d.name=?1")
     DemoEntity findFirstByName(String name);
     /**
      * 标准的left join查找书籍,可以批量查找
