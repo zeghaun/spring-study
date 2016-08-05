@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "demo")
-@DiscriminatorValue("DemoEntityJoin")
+@DiscriminatorValue("null")
 public class DemoEntityJoin extends DemoEntity implements Serializable {
 
     private static final long serialVersionUID = 3983966738189756001L;

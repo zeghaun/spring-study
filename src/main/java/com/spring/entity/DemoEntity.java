@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Table(name = "demo")
 @DiscriminatorValue("DemoEntity")
 @DiscriminatorColumn(
-        name = "DD",
+        name = "rrr",
         discriminatorType = DiscriminatorType.STRING
 )
 @DiscriminatorOptions(force=false,insert = false)

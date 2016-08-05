@@ -48,7 +48,7 @@ public class DemoService {
         log("孩子 ....");
         log();
         log();
-        DemoEntity dd = demoRepository.findFirstByName("key");
+        DemoEntity dd = demoRepository.findFirstByName("abc");
         System.out.println(dd instanceof DemoEntityJoin);
         log("json2:" + JsonUtil.toJson(dd));
         log("父亲 ....");
