@@ -71,6 +71,13 @@ public class DemoEntity implements Serializable {
         System.out.println("DemoEntity hibernateEntity:" + ids);
     }
 
+    public DemoEntity(int id, String name, HibernateEntity hibernateEntity) {
+        this.id = id;
+        this.name = name;
+        this.hibernateEntity = hibernateEntity;
+        System.out.println("DemoEntity hibernateEntity33:");
+    }
+
     public DemoEntity(int id, String name, String key, String value) {
         this.id = id;
         this.name = name;

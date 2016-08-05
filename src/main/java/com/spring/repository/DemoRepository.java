@@ -28,14 +28,14 @@ public interface DemoRepository extends JpaRepository<DemoEntity, String> {
     List<DemoEntity> getDemoEntityList(Pageable pageable);
 
     //
-    @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,t.key,t.value) " +
+    @Query(value = "SELECT new com.spring.entity.DemoEntity(d.id,d.name,t) " +
             "from DemoEntity d " +
             "LEFT JOIN d.hibernateEntity t " +
             "where d.id=30")
     DemoEntity getByJoin();
 
 
-    DemoEntity findByName(String name);
+    DemoEntity findFirstByName(String name);
     /**
      * 标准的left join查找书籍,可以批量查找
      * 1.使用new和d（entity）是走不一样的规则，使用d是可以正常的使用FETCH

@@ -42,12 +42,12 @@ public class DemoService {
         log("doing left join ....");
         log();
         log();
-        DemoEntity dd = demoRepository.findByName("hibernate");
+        DemoEntity dd = demoRepository.findFirstByName("key");
         log(JsonUtil.toJson(dd));
         log("原生 ....");
         log();
         log();
-        DemoEntity ddd = demoRepository.findByName("hibernate");
+        DemoEntity ddd = demoRepository.findFirstByName("hibernate");
         log(JsonUtil.toJson(ddd));
         log("原生 ....");
         return "";
@@ -58,7 +58,7 @@ public class DemoService {
     }
 
     public Object patch() {
-        return demoRepository.findByName("hibernate");
+        return demoRepository.findFirstByName("hibernate");
     }
 
     public Object post(DemoEntity demoEntity) {
