@@ -1,5 +1,7 @@
 package com.spring.main;
 
+import com.spring.common.utils.JsonUtil;
+import com.spring.entity.DemoEntity;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
@@ -42,8 +46,13 @@ public class AppMain {
 //        c.add(um);
 //
 //        c.delete(11146);
-
-        System.out.println(0x7fffffffffffffffL);
+        List<DemoEntity> list = new ArrayList<>();
+        DemoEntity d1 = new DemoEntity();
+        for (int i = 0; i < 10; i++) {
+            list.add(d1);
+        }
+        System.out.println(JsonUtil.toJson(list));
+        System.out.println(list.size());
     }
 
     public void test() {

@@ -40,7 +40,6 @@ public class DemoService {
 //        return demoRepository.getDemoEntityList(pageable);
 
 //        demoEntityJoinRepository.save(new DemoEntityJoin());
-//        demoRepository.save(new DemoEntity());
         log();
         log();
         DemoEntityJoin d = demoEntityJoinRepository.getByJoin(70);
@@ -55,7 +54,6 @@ public class DemoService {
         log();
         DemoEntityJoin ddd = demoEntityJoinRepository.findFirstByName("abc");
         log("json3:" + JsonUtil.toJson(ddd));
-//        log("原生 ....");
         return "";
     }
 

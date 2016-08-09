@@ -18,13 +18,11 @@ public class DemoEntityJoin implements Serializable {
     //hibernate 要特别加@Id 搞不懂为啥
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonInclude
-    protected int id;
+    private int id;
 
-    protected String name;
-    protected int age;
-    protected String remark;
-
+    private String name;
+    private int age;
+    private String remark;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "name", referencedColumnName = "key", insertable = false, updatable = false)
