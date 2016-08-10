@@ -55,10 +55,20 @@ public class DemoEntity implements Serializable {
         this.hibernateEntity = hibernateEntity;
     }
 
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "demoEntity")
+    private Set<User> users;
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
     public DemoEntity() {
 
     }
-
 
     public DemoEntity(int id, String name) {
         this.id = id;

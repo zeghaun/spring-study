@@ -23,7 +23,7 @@ public class HibernateEntity implements Serializable {
 
     private String value;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "demo_id")
     @JsonIgnore
     private DemoEntity demoEntity;
