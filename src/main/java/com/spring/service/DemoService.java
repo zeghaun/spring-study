@@ -5,7 +5,7 @@ import com.spring.common.utils.JsonUtil;
 import com.spring.component.JdbcFactory;
 import com.spring.entity.DemoEntity;
 import com.spring.repository.DemoRepository;
-import com.spring.repository.TestRepository;
+import com.spring.repository.HibernateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,14 +27,20 @@ public class DemoService {
     @Resource
     private DemoRepository demoRepository;
 
+
     @Resource
-    private TestRepository testRepository;
+    private HibernateRepository hibernateRepository;
 
 
     public Object getList(int offset, int limit) {
         Pageable pageable = OffsetPage.createPage(offset, limit);
-//        return demoRepository.getDemoEntityList(pageable);
+//        return d
+//        demoRepository.save(new DemoEntity(1001, "zeghaun"));
 
+//        HibernateEntity h = new HibernateEntity();
+//        h.setDemoEntity(new DemoEntity(1101, "zeghaun"));
+//        h.setKey("enti mysql");
+//        hibernateRepository.save(h);
         log();
         log();
         DemoEntity d = demoRepository.getByJoin();
@@ -42,12 +48,12 @@ public class DemoService {
         log("doing left join ....");
         log();
         log();
-        DemoEntity dd = demoRepository.findFirstByName("key");
+        DemoEntity dd = demoRepository.findFirstByName("new save");
         log(JsonUtil.toJson(dd));
         log("原生 ....");
         log();
         log();
-        DemoEntity ddd = demoRepository.findFirstByName("hibernate");
+        DemoEntity ddd = demoRepository.findFirstByName("key");
         log(JsonUtil.toJson(ddd));
         log("原生 ....");
         return "";

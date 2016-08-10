@@ -1,5 +1,6 @@
 package com.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
@@ -22,9 +23,21 @@ public class HibernateEntity implements Serializable {
 
     private String value;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "demo_id")
+    @JsonIgnore
     private DemoEntity demoEntity;
+
+    public HibernateEntity(){
+
+    }
+    public DemoEntity getDemoEntity() {
+        return demoEntity;
+    }
+
+    public void setDemoEntity(DemoEntity demoEntity) {
+        this.demoEntity = demoEntity;
+    }
 
     public int getId() {
         return id;

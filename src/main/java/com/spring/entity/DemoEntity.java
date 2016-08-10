@@ -15,6 +15,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "demo")
@@ -42,15 +43,15 @@ public class DemoEntity implements Serializable {
     private String remark;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-    private HibernateEntity hibernateEntity;
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "demoEntity")
+//    @JoinColumn(name = "name", referencedColumnName = "key", insertable = false, updatable = false)
+    private Set<HibernateEntity> hibernateEntity;
 
-    public HibernateEntity getHibernateEntity() {
+    public Set<HibernateEntity> getHibernateEntity() {
         return hibernateEntity;
     }
 
-    public void setHibernateEntity(HibernateEntity hibernateEntity) {
+    public void setHibernateEntity(Set<HibernateEntity> hibernateEntity) {
         this.hibernateEntity = hibernateEntity;
     }
 
@@ -68,10 +69,9 @@ public class DemoEntity implements Serializable {
     public DemoEntity(int id, String name, int ids) {
         this.id = id;
         this.name = name;
-        System.out.println("DemoEntity hibernateEntity:" + ids);
     }
 
-    public DemoEntity(int id, String name, HibernateEntity hibernateEntity) {
+    public DemoEntity(int id, String name, Set<HibernateEntity> hibernateEntity) {
         this.id = id;
         this.name = name;
         this.hibernateEntity = hibernateEntity;
@@ -92,7 +92,7 @@ public class DemoEntity implements Serializable {
         this.remark = remark;
     }
 
-    public DemoEntity(int id, String name, int age, String remark, HibernateEntity hibernateEntity) {
+    public DemoEntity(int id, String name, int age, String remark, Set<HibernateEntity> hibernateEntity) {
         this.id = id;
         this.name = name;
         this.age = age;
