@@ -2,13 +2,14 @@ package com.spring.service;
 
 import com.spring.common.query.OffsetPage;
 import com.spring.common.utils.JsonUtil;
-import com.spring.component.JdbcFactory;
+import com.spring.domain.People;
+import com.spring.domain.Pet;
 import com.spring.entity.DemoEntity;
 import com.spring.repository.DemoRepository;
 import com.spring.repository.HibernateRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.spring.repository.PeopleRepository;
+import com.spring.repository.PetReposity;
 import org.springframework.data.domain.Pageable;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,16 +22,17 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class DemoService {
-    @Autowired(required = false)
-    JdbcFactory jdbcFactory;
-
     @Resource
     private DemoRepository demoRepository;
-
 
     @Resource
     private HibernateRepository hibernateRepository;
 
+    @Resource
+    private PeopleRepository peopleRepository;
+
+    @Resource
+    private PetReposity petReposity;
 
     public Object getList(int offset, int limit) {
         Pageable pageable = OffsetPage.createPage(offset, limit);
@@ -64,18 +66,24 @@ public class DemoService {
     }
 
     public Object patch() {
-        return demoRepository.findFirstByName("hibernate");
+        People people = new People();
+        people.setName("people");
+
+
+        Pet dog = new Pet();
+        dog.setName("tomcat" + System.currentTimeMillis() % 1000);
+        petReposity.save(dog);
+
+        people.setPet(dog);
+        peopleRepository.save(people);
+
+        return "patch ";
     }
 
     public Object post(DemoEntity demoEntity) {
         demoEntity.setRemark("zeghaun post");
         demoRepository.save(demoEntity);
         return demoEntity;
-    }
-
-    private void demoJDBC() {
-        JdbcTemplate jdbcTemplate = jdbcFactory.getInstance();
-
     }
 
     private void log(String str) {
