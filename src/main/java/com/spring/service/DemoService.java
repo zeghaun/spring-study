@@ -5,6 +5,7 @@ import com.spring.common.utils.JsonUtil;
 import com.spring.domain.People;
 import com.spring.domain.Pet;
 import com.spring.entity.DemoEntity;
+import com.spring.entity.HibernateEntity;
 import com.spring.repository.DemoRepository;
 import com.spring.repository.HibernateRepository;
 import com.spring.repository.PeopleRepository;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
@@ -39,14 +42,22 @@ public class DemoService {
 //        return d
 //        demoRepository.save(new DemoEntity(1001, "zeghaun"));
 
-//        HibernateEntity h = new HibernateEntity();
-//        h.setDemoEntity(new DemoEntity(1101, "zeghaun"));
-//        h.setKey("enti mysql");
-//        hibernateRepository.save(h);
+
+        HibernateEntity h = new HibernateEntity();
+        h.setValue("1");
+        hibernateRepository.save(h);
+
+        Set<HibernateEntity> se=new HashSet<HibernateEntity>();
+        se.add(h);
+
+        DemoEntity t = new DemoEntity(1101, "zeghaun");
+        t.setAge((int) (System.currentTimeMillis() % 1000));
+        t.setHibernateEntity(se);
+        demoRepository.save(t);
         log();
         log();
-        DemoEntity d = demoRepository.getByJoin();
-        log(JsonUtil.toJson(d));
+//        DemoEntity d = demoRepository.getByJoin();
+//        log(JsonUtil.toJson(d));
         log("doing left join ....");
         log();
         log();

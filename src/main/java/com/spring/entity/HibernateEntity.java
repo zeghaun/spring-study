@@ -1,6 +1,5 @@
 package com.spring.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
@@ -19,40 +18,10 @@ public class HibernateEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String key;
-
     private String value;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "demo_id")
-    @JsonIgnore
-    private DemoEntity demoEntity;
 
     public HibernateEntity(){
 
-    }
-    public DemoEntity getDemoEntity() {
-        return demoEntity;
-    }
-
-    public void setDemoEntity(DemoEntity demoEntity) {
-        this.demoEntity = demoEntity;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public String getValue() {
@@ -61,5 +30,13 @@ public class HibernateEntity implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

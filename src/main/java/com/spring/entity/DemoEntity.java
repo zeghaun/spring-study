@@ -43,8 +43,8 @@ public class DemoEntity implements Serializable {
     private String remark;
 
 
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "demoEntity")
-//    @JoinColumn(name = "name", referencedColumnName = "key", insertable = false, updatable = false)
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "h_id")
     private Set<HibernateEntity> hibernateEntity;
 
     public Set<HibernateEntity> getHibernateEntity() {
@@ -53,17 +53,6 @@ public class DemoEntity implements Serializable {
 
     public void setHibernateEntity(Set<HibernateEntity> hibernateEntity) {
         this.hibernateEntity = hibernateEntity;
-    }
-
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "demoEntity")
-    private Set<User> users;
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
     public DemoEntity() {
