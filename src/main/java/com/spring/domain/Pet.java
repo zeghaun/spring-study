@@ -15,6 +15,16 @@ public class Pet {
 
     private String name;
 
+    @OneToOne(mappedBy = "pet",cascade = CascadeType.ALL)
+    private People people;
+
+    public People getPeople() {
+        return people;
+    }
+
+    public void setPeople(People people) {
+        this.people = people;
+    }
 
     public String getName() {
         return name;

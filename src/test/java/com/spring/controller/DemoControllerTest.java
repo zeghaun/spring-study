@@ -90,7 +90,17 @@ public class DemoControllerTest extends AbstractTest {
      */
     @Test
     public void testDelete() throws Exception {
-        //TODO: Test goes here...
+        String url = pre + "/12";
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.request(HttpMethod.DELETE, url)
+                .characterEncoding(CharEncoding.UTF_8)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        ResultActions result = mockMvc.perform(request);
+        mvcResult = result.andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andReturn();
     }
 
     /**
@@ -98,7 +108,7 @@ public class DemoControllerTest extends AbstractTest {
      */
     @Test
     public void testPatch() throws Exception {
-        String url = pre ;
+        String url = pre;
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.request(HttpMethod.PATCH, url)
                 .characterEncoding(CharEncoding.UTF_8)

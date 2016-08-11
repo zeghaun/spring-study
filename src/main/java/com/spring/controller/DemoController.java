@@ -66,7 +66,7 @@ public class DemoController {
     @ResponseStatus(HttpStatus.OK)
     public Object delete(@PathVariable(value = "id") String id) {
 
-        return "";
+        return demoService.delete();
     }
 
     @RequestMapping(value = "", method = RequestMethod.PATCH)

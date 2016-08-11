@@ -47,10 +47,10 @@ public class DemoService {
         h.setValue("1");
         hibernateRepository.save(h);
 
-        Set<HibernateEntity> se=new HashSet<HibernateEntity>();
+        Set<HibernateEntity> se = new HashSet<HibernateEntity>();
         se.add(h);
 
-        DemoEntity t = new DemoEntity(1101, "zeghaun");
+        DemoEntity t = new DemoEntity(98765, "uty");
         t.setAge((int) (System.currentTimeMillis() % 1000));
         t.setHibernateEntity(se);
         demoRepository.save(t);
@@ -73,6 +73,7 @@ public class DemoService {
     }
 
     public Object delete() {
+        peopleRepository.delete(1L);
         return "delete";
     }
 
@@ -80,13 +81,13 @@ public class DemoService {
         People people = new People();
         people.setName("people");
 
-
         Pet dog = new Pet();
-        dog.setName("tomcat" + System.currentTimeMillis() % 1000);
-        petReposity.save(dog);
+        dog.setName("dog");
+        dog.setPeople(people);
 
         people.setPet(dog);
-        peopleRepository.save(people);
+//        peopleRepository.save(people);
+        petReposity.save(dog);
 
         return "patch ";
     }
