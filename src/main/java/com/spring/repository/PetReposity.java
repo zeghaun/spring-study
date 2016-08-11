@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version Created by zhenghuan on 2016/8/10
  */
 public interface PetReposity extends JpaRepository<Pet, Long> {
-
+    Pet findByName(String name);
 }

@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version Created by zhenghuan on 2016/8/10
  */
 public interface PeopleRepository extends JpaRepository<People, Long> {
+    People findByName(String name);
+
 }

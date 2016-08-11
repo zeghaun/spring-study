@@ -87,9 +87,9 @@ public class DemoService {
 
         people.setPet(dog);
 //        peopleRepository.save(people);
-        petReposity.save(dog);
-
-        return "patch ";
+//        petReposity.save(dog);
+        dog= petReposity.findByName("tom");
+        return "patcj";
     }
 
     public Object post(DemoEntity demoEntity) {
