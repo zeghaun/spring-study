@@ -88,7 +88,7 @@ public class DemoService {
         people.setPet(dog);
 //        peopleRepository.save(people);
 //        petReposity.save(dog);
-        dog= petReposity.findByName("tom");
+        petReposity.delete(29L);
         return "patcj";
     }
 
