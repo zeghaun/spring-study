@@ -73,7 +73,12 @@ public class DemoService {
     }
 
     public Object delete() {
-        peopleRepository.delete(1L);
+//        peopleRepository.delete(2L);
+        People people = peopleRepository.findOne(5L);
+        for (Pet each : people.getPets()) {
+            each.setPeople(null);
+        }
+        peopleRepository.delete(people);
         return "delete";
     }
 
@@ -82,13 +87,18 @@ public class DemoService {
         people.setName("people");
 
         Pet dog = new Pet();
-        dog.setName("dog");
+        dog.setName("dog11");
         dog.setPeople(people);
 
-        people.setPet(dog);
-//        peopleRepository.save(people);
+        Pet cat = new Pet();
+        cat.setName("cat");
+        cat.setPeople(people);
+
+        people.add(dog);
+        people.add(cat);
+        peopleRepository.save(people);
 //        petReposity.save(dog);
-        petReposity.delete(29L);
+
         return "patcj";
     }
 

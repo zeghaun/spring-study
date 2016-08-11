@@ -15,7 +15,8 @@ public class Pet {
 
     private String name;
 
-    @OneToOne(mappedBy = "pet",cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "people_fk")
     private People people;
 
     public People getPeople() {
@@ -41,4 +42,5 @@ public class Pet {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
