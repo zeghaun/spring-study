@@ -1,6 +1,5 @@
 package com.spring.main;
 
-import com.spring.common.utils.JsonUtil;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -9,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
@@ -47,13 +43,11 @@ public class AppMain {
 //
 //        c.delete(11146);
 
-        List<Long> list = new ArrayList<>();
-        list.add(1L);
-        List<Long> te = new ArrayList<>();
-        te.add(2L);
-        list.addAll(te);
+        for(int i=1;i<=500;i++){
+            System.out.print(String.valueOf(i)+',');
+        }
 
-        System.out.println(JsonUtil.toJson(new HashSet<Long>(null)));
+//        System.out.println(JsonUtil.toJson(new HashSet<Long>(null)));
     }
 
     public void test() {

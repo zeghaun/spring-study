@@ -74,11 +74,8 @@ public class DemoService {
 
     public Object delete() {
 //        peopleRepository.delete(2L);
-        People people = peopleRepository.findOne(5L);
-        for (Pet each : people.getPets()) {
-            each.setPeople(null);
-        }
-        peopleRepository.delete(people);
+        People people = peopleRepository.findByName("people");
+        Object o=people.getPets();
         return "delete";
     }
 
