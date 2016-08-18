@@ -1,5 +1,6 @@
 package com.spring.main;
 
+import com.spring.common.utils.JsonUtil;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -8,6 +9,10 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author zhenghuan (zeghaun@163.com)
@@ -42,12 +47,22 @@ public class AppMain {
 //        c.add(um);
 //
 //        c.delete(11146);
+        Pattern pattern = Pattern.compile("^[1-9][0-9]{11}$");
+        System.out.println(pattern.matcher("000100000000").matches());
+        Date date = new Date();
+        System.out.println(date.toString());
 
-        for(int i=1;i<=500;i++){
-            System.out.print(String.valueOf(i)+',');
+
+
+        List<Demo> list = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            Demo demo = new Demo();
+            demo.setAge(i);
+            demo.setId(i * i * 10);
+            list.add(demo);
         }
-
-//        System.out.println(JsonUtil.toJson(new HashSet<Long>(null)));
+        log(list.size());
+        log(JsonUtil.toJson(list));
     }
 
     public void test() {
