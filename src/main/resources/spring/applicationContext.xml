@@ -36,5 +36,6 @@
     <import resource="classpath:spring/applicationContext-i18n.xml"/>
     <import resource="classpath:spring/applicationContext-jpa.xml"/>
     <import resource="classpath:spring/applicationContext-mysql.xml"/>
+    <import resource="classpath:spring/applicationContext-memcached.xml"/>
 
 </beans>
