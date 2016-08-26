@@ -1,6 +1,5 @@
 package com.spring.main;
 
-import com.spring.common.utils.JsonUtil;
 import com.spring.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -8,9 +7,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -47,25 +49,20 @@ public class AppMain {
 //        c.add(um);
 //
 //        c.delete(11146);
-        Pattern pattern = Pattern.compile("^[1-9][0-9]{11}$");
-        System.out.println(pattern.matcher("000100000000").matches());
-        Date date = new Date();
-        System.out.println(date.toString());
-
-
-
-        List<Demo> list = new LinkedList<>();
-        for (int i = 0; i < 10; i++) {
-            Demo demo = new Demo();
-            demo.setAge(i);
-            demo.setId(i * i * 10);
-            list.add(demo);
+        List<Integer> list = new ArrayList<>();
+        String s = "";
+        for (int i = 250; i < 1350; i++) {
+            s += "," + i;
         }
-        log(list.size());
-        log(JsonUtil.toJson(list));
+        System.out.println(s);
+        Date t = new Date();
+        System.out.println(DateFormat.getDateInstance().format(null));
     }
 
     public void test() {
+
+        Pattern pattern = Pattern.compile("^[1-9][0-9]{11}$");
+        System.out.println(pattern.matcher("000100000000").matches());
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test/applicationContext-jpa.xml");
 
         AppMain c = (AppMain) ctx.getBean("appMain");
@@ -84,13 +81,18 @@ public class AppMain {
         System.out.println(str);
     }
 
-    private static void log(double str) {
-        System.out.println(str);
-    }
 
-    private static void log(int str) {
-        System.out.println(str);
+    public static String GetMD5Code(String strObj) {
+        String resultString = null;
+        try {
+            resultString = new String(strObj);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            // md.digest() 该函数返回值为存放哈希值结果的byte数组
+//            resultString = byteToString(md.digest(strObj.getBytes()));
+        } catch (NoSuchAlgorithmException ex) {
+            ex.printStackTrace();
+        }
+        return resultString;
     }
-
 
 }
