@@ -4,7 +4,6 @@
  */
 package com.spring.interceptor;
 
-import com.spring.component.MemcachedUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,8 +33,8 @@ public class ControllerInterceptor implements HandlerInterceptor {
         //  与xml中intercept有关系。好像可以做切面
         //SessionFactory session = (SessionFactory) BeanFactory.getBean("sessionFactory");
 
-        boolean b = MemcachedUtils.getMemCachedClient().set("1", "23");
-        log("preHandle:" + httpServletRequest.getMethod() + "    " + b);
+//        boolean b = MemcachedUtils.getMemCachedClient().set("1", "23");
+        log("preHandle:" + httpServletRequest.getMethod() + "    " );
         log("preHandle:" + httpServletRequest.getHeader("Content-Type"));
         return true;
     }
