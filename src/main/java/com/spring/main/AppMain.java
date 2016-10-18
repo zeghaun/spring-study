@@ -9,12 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -36,7 +33,7 @@ public class AppMain {
         ur.deleteById(id);
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
 
 //        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 //
@@ -58,12 +55,25 @@ public class AppMain {
         System.out.println(s);
         Date t = new Date();
         SimpleDateFormat formatter;
-        formatter = new SimpleDateFormat("yyyyMMdd");
+        formatter = new SimpleDateFormat("yyMMdd");
         System.out.println(DateFormat.getDateInstance().format(t));
         System.out.println(formatter.format(t));
 
-        System.out.println();
 
+        Set<String> set = new HashSet<>();
+        set.add(null);
+        Date today = new Date();
+        Thread.sleep(10);
+        System.out.println(today.before(new Date()));
+        System.out.println(today.equals(new Date()));
+
+    }
+
+    public String getPreviousDay(String today) {
+        Date t = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyMMdd");
+
+        return null;
     }
 
     public void test() {
