@@ -3,7 +3,9 @@ package com.spring.controller;
 import com.spring.common.exception.FieldException;
 import com.spring.common.utils.JsonUtil;
 import com.spring.common.validator.groups.Create;
+import com.spring.domain.People;
 import com.spring.entity.DemoEntity;
+import com.spring.repository.PeopleRepository;
 import com.spring.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,12 +14,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * @author zhenghuan (zeghaun@163.com)
  * @version Created by zhenghuan on 2016/6/26
  */
 @RestController
-@RequestMapping("/${version}/demo")
+@RequestMapping("/demo")
 //@RequestMapping("/v0.1")
 public class DemoController {
 
@@ -26,6 +30,9 @@ public class DemoController {
 
     @Autowired
     private DemoService demoService;
+
+    @Resource
+    private PeopleRepository peopleRepository;
 
     /**
      * [GET]    ?$offset={offset}&$limit={limit}
@@ -62,11 +69,12 @@ public class DemoController {
         return demoService.post(demoEntity);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public Object delete(@PathVariable(value = "id") String id) {
+    public Object delete() {
 
-        return demoService.delete();
+        People people = peopleRepository.findByName("11");
+        return people;
     }
 
     @RequestMapping(value = "", method = RequestMethod.PATCH)
