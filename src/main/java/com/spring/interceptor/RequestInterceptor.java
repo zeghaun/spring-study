@@ -16,9 +16,9 @@ public class RequestInterceptor implements WebRequestInterceptor {
     public void preHandle(WebRequest request) throws Exception {
         // TODO Auto-generated method stub
         System.out.println("AllInterceptor...............................");
-        request.setAttribute("request", "request", WebRequest.SCOPE_REQUEST);//这个是放到request范围内的，所以只能在当前请求中的request中获取到
-        request.setAttribute("session", "session", WebRequest.SCOPE_SESSION);//这个是放到session范围内的，如果环境允许的话它只能在局部的隔离的会话中访问，否则就是在普通的当前会话中可以访问
-        request.setAttribute("globalSession", "globalSession", WebRequest.SCOPE_GLOBAL_SESSION);//如果环境允许的话，它能在全局共享的会话中访问，否则就是在普通的当前会话中访问
+//        request.setAttribute("request", "request", WebRequest.SCOPE_REQUEST);//这个是放到request范围内的，所以只能在当前请求中的request中获取到
+//        request.setAttribute("session", "session", WebRequest.SCOPE_SESSION);//这个是放到session范围内的，如果环境允许的话它只能在局部的隔离的会话中访问，否则就是在普通的当前会话中可以访问
+//        request.setAttribute("globalSession", "globalSession", WebRequest.SCOPE_GLOBAL_SESSION);//如果环境允许的话，它能在全局共享的会话中访问，否则就是在普通的当前会话中访问
     }
 
     /**
@@ -28,11 +28,8 @@ public class RequestInterceptor implements WebRequestInterceptor {
     @Override
     public void postHandle(WebRequest request, ModelMap map) throws Exception {
         // TODO Auto-generated method stub
-        for (String key : map.keySet())
-            System.out.println(key + "-------------------------");
-        ;
-        map.put("name3", "value3");
-        map.put("name1", "name1");
+//        map.put("name3", "value3");
+//        map.put("name1", "name1");
     }
 
     /**
@@ -42,7 +39,7 @@ public class RequestInterceptor implements WebRequestInterceptor {
     public void afterCompletion(WebRequest request, Exception exception)
             throws Exception {
         // TODO Auto-generated method stub
-        System.out.println(exception + "-=-=--=--=-=-=-=-=-=-=-=-==-=--=-=-=-=");
+//        System.out.println(exception + "-=-=--=--=-=-=-=-=-=-=-=-==-=--=-=-=-=");
     }
 
 }
