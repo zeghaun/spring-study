@@ -1,7 +1,5 @@
 package com.spring.main;
 
-import com.spring.repository.TestRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -21,17 +19,6 @@ import java.util.regex.Pattern;
 @Service
 @Transactional
 public class AppMain {
-
-    @Autowired
-    private TestRepository ur;
-
-    public void add(Demo um) {
-        ur.save(um);
-    }
-
-    public void delete(int id) {
-        ur.deleteById(id);
-    }
 
     public static void main(String[] args) throws Exception {
 
@@ -87,9 +74,6 @@ public class AppMain {
         um.setAge(15);
         um.setName("zeghaun");
         um.setRemark("zeghaun");
-        c.add(um);
-
-        c.delete(11146);
 
         System.out.println("中文中文中".length());
     }
