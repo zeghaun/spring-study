@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @version Created by zhenghuan on 2017/2/14
  */
 @Repository
-public interface AreaRepository extends JpaRepository<Area, Integer> {
+public interface AreaRepository extends JpaRepository<Area, Long> {
 }

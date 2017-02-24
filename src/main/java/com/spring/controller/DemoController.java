@@ -3,12 +3,11 @@ package com.spring.controller;
 import com.spring.common.exception.FieldException;
 import com.spring.common.utils.JsonUtil;
 import com.spring.common.validator.groups.Create;
-import com.spring.domain.Department;
+import com.spring.domain.Area;
 import com.spring.domain.People;
+import com.spring.domain.User;
 import com.spring.entity.DemoEntity;
-import com.spring.repository.DepartmentRepository;
-import com.spring.repository.EmployeeRepository;
-import com.spring.repository.PeopleRepository;
+import com.spring.repository.*;
 import com.spring.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,6 +42,12 @@ public class DemoController {
     @Resource
     private EmployeeRepository employeeRepository;
 
+    @Resource
+    private UserRepository userRepository;
+
+    @Resource
+    private AreaRepository areaRepository;
+
     /**
      * [GET]    ?$offset={offset}&$limit={limit}
      *
@@ -55,11 +60,17 @@ public class DemoController {
         if (limit > 50) {
             limit = 50;
         }
-        Department d = new Department();
-        d.setName("112");
 
+        Area area = new Area();
+        area.setAreaName("name");
 
-        return departmentRepository.findOne(1);
+        User user = new User();
+        user.setUserName("user name");
+
+//        area = areaRepository.findOne(1L);
+
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        return userRepository.findOne(1L);
     }
 
     /**

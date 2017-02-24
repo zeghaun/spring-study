@@ -9,16 +9,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "area")
 public class Area {
-
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="idarea")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idarea")
     private Long idArea;
 
-    @Column(name="area_name")
+    @Column(name = "area_name")
     private String areaName;
 
-    @OneToOne(fetch=FetchType.LAZY, mappedBy="area")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "area")
     private User user;
 
     public Long getIdArea() {
