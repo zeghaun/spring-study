@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class WaitNotify {
     static boolean flag = true;
-    static Object lock = new Object();
+    static  Object lock = new Object();
 
     public static void main(String[] args) throws InterruptedException {
         Thread A = new Thread(new Wait(), "wait thread");
@@ -22,10 +22,12 @@ public class WaitNotify {
         @Override
         public void run() {
             synchronized (lock) {
+
                 while (flag) {
                     try {
                         System.out.println(Thread.currentThread() + " flag is true");
                         lock.wait();
+                        System.out.println(Thread.currentThread() + " flag is true2");
                     } catch (InterruptedException e) {
 
                     }
@@ -42,6 +44,7 @@ public class WaitNotify {
                 flag = false;
                 lock.notifyAll();
                 try {
+                    System.out.println(Thread.currentThread() + " xxxxx");
                     TimeUnit.SECONDS.sleep(7);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
