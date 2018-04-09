@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
 
 /**
@@ -20,41 +20,56 @@ import java.util.regex.Pattern;
 @Transactional
 public class AppMain {
 
-    public static void main(String[] args) throws Exception {
+    private AtomicReference<Thread> owner = new AtomicReference<>();
 
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
-//
-//        SessionFactory session =(SessionFactory) BeanFactory.getBean("sessionFactory");
-//
-//        AppMain c = (AppMain) ctx.getBean("appMain");
-//        Demo um = new Demo();
-//        um.setAge(15);
-//        um.setName("zeghaun");
-//        um.setRemark("zeghaun");
-//        c.add(um);
-//
-//        c.delete(11146);
-        List<Integer> list = new ArrayList<>();
-        String s = "";
-        for (int i = 250; i < 1350; i++) {
-            s += "," + i;
+    boolean isLocked = false;
+
+    int lockCount = 0;
+
+    Thread threadLocal = null;
+
+    public void lock() throws InterruptedException {
+        Thread thread = Thread.currentThread();
+        while (isLocked && thread != threadLocal) {
+            wait();
         }
-        System.out.println(s);
-        Date t = new Date();
-        SimpleDateFormat formatter;
-        formatter = new SimpleDateFormat("yyMMdd");
-        System.out.println(DateFormat.getDateInstance().format(t));
-        System.out.println(formatter.format(t));
 
 
-        Set<String> set = new HashSet<>();
-        set.add(null);
-        Date today = new Date();
-        Thread.sleep(10);
-        System.out.println(today.before(new Date()));
-        System.out.println(today.equals(new Date()));
 
     }
+
+    public void unlock() {
+        if (Thread.currentThread() == this.threadLocal) {
+            lockCount--;
+            if (lockCount == 0) {
+                isLocked = false;
+                notify();
+            }
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+
+
+        Integer i = 1280, j = 1280;
+        if(i==j){
+            System.out.println("ddd");
+        }
+
+
+        // 创建两个Person对象，它们的id分别是101和102。
+        Person p1 = new Person(101);
+        Person p2 = new Person(102);
+        // 新建AtomicReference对象，初始化它的值为p1对象
+        AtomicReference ar = new AtomicReference(p1);
+        // 通过CAS设置ar。如果ar的值为p1的话，则将其设置为p2。
+        ar.compareAndSet(p1, p2);
+
+        Person p3 = (Person) ar.get();
+        System.out.println("p3 is " + p3);
+        System.out.println("p3.equals(p1)=" + p3.equals(p1));
+    }
+
 
     public String getPreviousDay(String today) {
         Date t = new Date();
@@ -70,10 +85,6 @@ public class AppMain {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test/applicationContext-jpa.xml");
 
         AppMain c = (AppMain) ctx.getBean("appMain");
-        Demo um = new Demo();
-        um.setAge(15);
-        um.setName("zeghaun");
-        um.setRemark("zeghaun");
 
         System.out.println("中文中文中".length());
     }
@@ -96,4 +107,17 @@ public class AppMain {
         return resultString;
     }
 
+}
+
+
+class Person {
+    volatile int id;
+
+    public Person(int id) {
+        this.id = id;
+    }
+
+    public String toString() {
+        return "id:" + id;
+    }
 }
