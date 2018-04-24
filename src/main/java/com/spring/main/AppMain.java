@@ -35,7 +35,6 @@ public class AppMain {
         }
 
 
-
     }
 
     public void unlock() {
@@ -51,10 +50,29 @@ public class AppMain {
     public static void main(String[] args) throws Exception {
 
 
-        Integer i = 1280, j = 1280;
-        if(i==j){
-            System.out.println("ddd");
-        }
+//        String str1 = new StringBuilder("hel").append("lo").toString();
+//        String str2 = new StringBuilder("ja").append("va").toString();
+//
+//        System.out.println(str1.intern() == str1); // true
+//        System.out.println(str2.intern() == str2); // false
+
+        String s = new String("1");
+        s.intern();
+        System.out.println(s == s.intern());
+
+        String s3 = new String("1") + new String("1");
+        s3.intern();
+        String s4 = "";
+        System.out.println(s4.intern() == s4);
+
+
+//        String s2 = "a";
+//        String s3 = "bc";
+//        String s4 = s2 + s3;
+//
+//        String s1 = "abc";
+//        s4.intern();
+//        System.out.println(s1 == s1.intern());
 
 
         // 创建两个Person对象，它们的id分别是101和102。
@@ -68,6 +86,10 @@ public class AppMain {
         Person p3 = (Person) ar.get();
         System.out.println("p3 is " + p3);
         System.out.println("p3.equals(p1)=" + p3.equals(p1));
+
+        Long g=3L;
+        System.out.println(g.equals(1+2));
+        System.out.println(g==(1+2));
     }
 
 
