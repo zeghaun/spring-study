@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.HashSet;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zhenghuan (zhenghuan@duiba.com.cn)
@@ -74,5 +76,30 @@ public class HotswapCL extends ClassLoader {
         }
         return cls;
     }
+    public static void main(String[] args) {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    // 每次都创建出一个新的类加载器
+                    HotswapCL cl = new HotswapCL("D:\\ideaspace\\spring-study\\target\\classes", new String[]{"com.spring.common.hotswap.Foo"});
 
+                    Class cls = cl.loadClass("com.spring.common.hotswap.Foo");
+                    Object foo = cls.newInstance();
+
+                    Method m = foo.getClass().getMethod("sayHello", new Class[]{});
+                    m.invoke(foo);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+                try {
+                    TimeUnit.SECONDS.sleep(6L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }).start();
+    }
 }

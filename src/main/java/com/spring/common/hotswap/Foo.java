@@ -6,6 +6,6 @@ package com.spring.common.hotswap;
  */
 public class Foo{
     public void sayHello() {
-        System.out.println("hello world!");
+        System.out.println("hello world! 1");
     }
 }
