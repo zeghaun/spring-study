@@ -3,7 +3,11 @@ package com.spring.controller;
 import com.spring.common.exception.FieldException;
 import com.spring.common.utils.JsonUtil;
 import com.spring.common.validator.groups.Create;
+import com.spring.domain.Area;
+import com.spring.domain.People;
+import com.spring.domain.User;
 import com.spring.entity.DemoEntity;
+import com.spring.repository.*;
 import com.spring.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,12 +16,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * @author zhenghuan (zeghaun@163.com)
  * @version Created by zhenghuan on 2016/6/26
  */
 @RestController
-@RequestMapping("/${version}/demo")
+@RequestMapping("/demo")
 //@RequestMapping("/v0.1")
 public class DemoController {
 
@@ -26,6 +32,21 @@ public class DemoController {
 
     @Autowired
     private DemoService demoService;
+
+    @Resource
+    private PeopleRepository peopleRepository;
+
+    @Resource
+    private DepartmentRepository departmentRepository;
+
+    @Resource
+    private EmployeeRepository employeeRepository;
+
+    @Resource
+    private UserRepository userRepository;
+
+    @Resource
+    private AreaRepository areaRepository;
 
     /**
      * [GET]    ?$offset={offset}&$limit={limit}
@@ -39,7 +60,17 @@ public class DemoController {
         if (limit > 50) {
             limit = 50;
         }
-        return demoService.getList(offset, limit);
+
+        Area area = new Area();
+        area.setAreaName("name");
+
+        User user = new User();
+        user.setUserName("user name");
+
+//        area = areaRepository.findOne(1L);
+
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        return userRepository.findOne(1L);
     }
 
     /**
@@ -62,11 +93,12 @@ public class DemoController {
         return demoService.post(demoEntity);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public Object delete(@PathVariable(value = "id") String id) {
+    public Object delete() {
 
-        return demoService.delete();
+        People people = peopleRepository.findByName("11");
+        return people;
     }
 
     @RequestMapping(value = "", method = RequestMethod.PATCH)

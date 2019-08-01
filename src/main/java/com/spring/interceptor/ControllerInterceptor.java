@@ -32,9 +32,9 @@ public class ControllerInterceptor implements HandlerInterceptor {
 
         //  与xml中intercept有关系。好像可以做切面
         //SessionFactory session = (SessionFactory) BeanFactory.getBean("sessionFactory");
-        log();
 
-        log("preHandle:" + httpServletRequest.getMethod() + "    " + System.currentTimeMillis() % 10000);
+//        boolean b = MemcachedUtils.getMemCachedClient().set("1", "23");
+        log("preHandle:" + httpServletRequest.getMethod() + "    " );
         log("preHandle:" + httpServletRequest.getHeader("Content-Type"));
         return true;
     }

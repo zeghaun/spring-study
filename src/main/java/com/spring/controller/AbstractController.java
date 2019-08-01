@@ -8,10 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * @author DC.L <ivwsai@gmail.com>
- * @version Created by DCL on 12/16/2015
- */
+
 @Component
 public abstract class AbstractController {
 //    protected Logger logger = LoggerFactory.getLogger(getClass());

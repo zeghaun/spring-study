@@ -16,7 +16,7 @@ public class Pet {
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "people_fk")
+    @JoinColumn(name = "id",referencedColumnName = "id",insertable = false,updatable = false)
     private People people;
 
     public People getPeople() {

@@ -76,14 +76,14 @@ public class LogAspect {
      */
     //@Around("execution(public * com.spring.controller..*.*(..)) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public Object doAroud(ProceedingJoinPoint joinPoint) {
-        log("方法环绕start.....");
-        Object o = null;
-        try {
-            o = joinPoint.proceed();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-        log("方法环绕end.....");
+//        log("方法环绕start.....");
+//        Object o = null;
+//        try {
+//            o = joinPoint.proceed();
+//        } catch (Throwable e) {
+//            e.printStackTrace();
+//        }
+//        log("方法环绕end.....");
 
         return null;
     }
